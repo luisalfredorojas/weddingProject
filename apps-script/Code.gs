@@ -75,7 +75,8 @@ function sendCalendlyMessage({ notifyEmail, name, calendlyBase }) {
     <p>¡Gracias por confirmar tu asistencia! Para coordinar los detalles finales, agenda una llamada en el enlace a continuación:</p>
     <p><a href="${calendlyBase}" style="background:#406977;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;">Agendar con Calendly</a></p>
     <p>Si el enlace no se abre, copia y pega esta dirección en tu navegador:<br>${calendlyBase}</p>
-    <p>Con cariño,<br>Valeria & Mateo</p>
+    <p>Con cariño,<br>Luis & Maria Emilia</p>
+
   </body></html>`;
   GmailApp.sendEmail(notifyEmail, 'Confirmación de asistencia', 'Confirma tu asistencia', {
     htmlBody

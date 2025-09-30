@@ -1,10 +1,11 @@
 'use strict';
 
 import { throttle, prefersReducedMotion, createUnlockScrollToggle } from './utils.js';
-
+import { t, onLanguageChange } from './i18n.js';
 export function initNavController() {
   const panels = Array.from(document.querySelectorAll('.panel'));
-  const progressEl = document.querySelector('[data-progress-count]');
+  const statusEl = document.querySelector('[data-progress-status]');
+  const dotsContainer = document.querySelector('[data-progress-dots]');
   const btnPrev = document.querySelector('[data-nav-prev]');
   const btnNext = document.querySelector('[data-nav-next]');
   const main = document.querySelector('.main');
@@ -15,6 +16,27 @@ export function initNavController() {
   let isAnimating = false;
   let touchStartY = null;
 
+  function updateStatusText() {
+    if (!statusEl) return;
+    const template = t('progressStatus') || 'Sección {current} de {total}';
+    const label = template
+      .replace('{current}', `${currentIndex + 1}`)
+      .replace('{total}', `${panels.length}`);
+    statusEl.textContent = label;
+  }
+
+  const dots = [];
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    panels.forEach((_, index) => {
+      const dot = document.createElement('span');
+      dot.className = 'progress-dot';
+      dot.setAttribute('aria-hidden', 'true');
+      dot.dataset.index = index;
+      dotsContainer.append(dot);
+      dots.push(dot);
+    });
+  }
   function updatePositions() {
     panels.forEach((panel, index) => {
       const offset = index - currentIndex;
@@ -27,9 +49,10 @@ export function initNavController() {
         panel.setAttribute('aria-hidden', 'true');
       }
     });
-    if (progressEl) {
-      progressEl.textContent = `${currentIndex + 1}`;
-    }
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('is-active', index === currentIndex);
+    });
+    updateStatusText();
     btnPrev?.toggleAttribute('disabled', currentIndex === 0);
     btnNext?.toggleAttribute('disabled', currentIndex === panels.length - 1);
   }
@@ -111,6 +134,8 @@ export function initNavController() {
   main.addEventListener('touchmove', handleTouchMove, { passive: false });
   document.addEventListener('keydown', handleKey);
   document.addEventListener('visibilitychange', handleVisibility);
+  onLanguageChange(updateStatusText);
+
 
   panels.forEach(panel => {
     panel.setAttribute('tabindex', '-1');

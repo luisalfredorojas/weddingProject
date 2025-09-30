@@ -1,13 +1,15 @@
 {
-  "eventTitle": "Valeria & Mateo · Nuestra boda",
-  "eventDateIso": "2025-12-20T17:00:00-06:00",
+  "eventTitle": "Luis & Maria Emilia · Nuestra boda",
+  "eventDateIso": "2026-06-20T17:00:00-05:00",
+
   "venueName": "Hacienda Los Sueños",
   "canonicalUrl": "https://example.com",
   "appsScriptEndpoint": "https://script.google.com/macros/s/DEPLOYMENT_ID/exec",
   "sendCalendlyEmail": true,
-  "calendlyBaseUrl": "https://calendly.com/usuario/boda-valeria-mateo",
+  "calendlyBaseUrl": "https://calendly.com/usuario/boda-luis-maria-emilia",
   "social": {
     "instagram": "https://instagram.com/usuario",
-    "hashtag": "#ValeriaYMateo2025"
+    "hashtag": "#LuisYMariaEmilia2026"
+
   }
 }
