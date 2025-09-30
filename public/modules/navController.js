@@ -2,7 +2,6 @@
 
 import { throttle, prefersReducedMotion, createUnlockScrollToggle } from './utils.js';
 import { t, onLanguageChange } from './i18n.js';
-
 export function initNavController() {
   const panels = Array.from(document.querySelectorAll('.panel'));
   const statusEl = document.querySelector('[data-progress-status]');
@@ -38,7 +37,6 @@ export function initNavController() {
       dots.push(dot);
     });
   }
-
   function updatePositions() {
     panels.forEach((panel, index) => {
       const offset = index - currentIndex;
@@ -137,6 +135,7 @@ export function initNavController() {
   document.addEventListener('keydown', handleKey);
   document.addEventListener('visibilitychange', handleVisibility);
   onLanguageChange(updateStatusText);
+
 
   panels.forEach(panel => {
     panel.setAttribute('tabindex', '-1');

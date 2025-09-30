@@ -1,6 +1,7 @@
 {
   "eventTitle": "Luis & Maria Emilia · Nuestra boda",
   "eventDateIso": "2026-06-20T17:00:00-05:00",
+
   "venueName": "Hacienda Los Sueños",
   "canonicalUrl": "https://example.com",
   "appsScriptEndpoint": "https://script.google.com/macros/s/DEPLOYMENT_ID/exec",
@@ -9,5 +10,6 @@
   "social": {
     "instagram": "https://instagram.com/usuario",
     "hashtag": "#LuisYMariaEmilia2026"
+
   }
 }

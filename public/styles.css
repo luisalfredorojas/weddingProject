@@ -138,6 +138,7 @@ a {
   display: grid;
   gap: clamp(1rem, 2vw, 2.5rem);
   padding-block: clamp(1.5rem, 4vw, 3.5rem);
+
 }
 
 .panel--hero {
@@ -180,11 +181,13 @@ a {
   height: 100%;
   display: grid;
   min-height: clamp(240px, 60svh, 100%);
+
 }
 
 .carousel-viewport {
   overflow: hidden;
   height: 100%;
+
 }
 
 .carousel-track {
@@ -192,6 +195,7 @@ a {
   transition: transform 500ms ease;
   will-change: transform;
   height: 100%;
+
 }
 
 .carousel-slide {
