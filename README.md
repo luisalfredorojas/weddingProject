@@ -1,39 +1,65 @@
-# Wedding Website
+# Wedding Website · Setup Guide
 
-A simple, framework-free wedding website built with pure HTML, CSS and JavaScript.
+Este proyecto contiene un sitio de boda responsivo construido solo con HTML, CSS y JavaScript modernos.
 
-## Run locally
-Open `index.html` in any modern browser. No build step required.
+## Estructura
+- `public/`: Archivos estáticos listos para hospedar (HTML, CSS, JS, JSON, assets).
+- `apps-script/`: Código de Google Apps Script para registrar RSVPs en Google Sheets.
 
-## Customization
-- **Assets:** Replace `hero.mp4`, `hero.webm`, and `poster.jpg` in the project root with your own media.
-- **Theme:** Edit CSS variables in `styles.css` under `:root` to change colors, spacing, or fonts. An optional Google Fonts import is commented near the top.
-- **Copy:** Update names, dates, venue details, timeline text, and form labels directly in `index.html`.
+## Requisitos previos
+- Navegador moderno (Chrome, Edge, Firefox, Safari).
+- Cuenta de Google con acceso a Google Sheets y Apps Script.
+- (Opcional) Cuenta de Calendly si se usa el flujo de agenda.
 
-## RSVP backend
-1. Create a Google Sheet and note its ID.
-2. Open the sheet → Extensions → Apps Script and paste the contents of `apps-script.gs`.
-3. Replace `SHEET_ID` and `SHEET_NAME` at the top of the script.
-4. Deploy → **New deployment** → type **Web app**.
-   - Execute as: **Me**
-   - Who has access: **Anyone with the link**
-5. Copy the Web App URL and set `APPS_SCRIPT_URL` in `script.js`.
-6. Reload the site and send a test submission. Check the Google Sheet and the Apps Script Execution log for debugging.
+## Configuración local
+1. Clona o descarga este repositorio.
+2. Abre `public/index.html` directamente en tu navegador o sirve la carpeta `public/` con un servidor estático (`python -m http.server`, `npx serve`, etc.).
+3. Actualiza los archivos JSON en `public/data/` con la información de tu evento (ver sección "Personalización").
 
-If you see an "opaque" response due to missing CORS headers, the client still treats it as success. To read a JSON response, add an `Access-Control-Allow-Origin` header in `apps-script.gs`.
+## Despliegue en hosting estático
+1. Sube el contenido de `public/` a tu servicio estático preferido (GitHub Pages, Netlify, Vercel, Cloudflare Pages, S3 + CloudFront, etc.).
+2. Asegúrate de habilitar HTTPS y de que las rutas relativas se sirvan desde la raíz.
+3. Actualiza `canonicalUrl` en `public/data/site.config.json` con la URL pública.
 
-## Performance tips
-- Compress video files and provide the `poster.jpg` for faster loads.
-- Lazy‑load any additional images by setting `loading="lazy"`.
-- If enabling web fonts, use `preconnect` to the font host and specify `display=swap`.
+## Configuración de Google Sheets & Apps Script
+1. Crea una hoja en Google Sheets y nómbrala como prefieras.
+2. Copia el ID de la hoja (parte entre `/d/` y `/edit` en la URL).
+3. Abre **Extensiones → Apps Script** en la hoja y pega el contenido de `apps-script/Code.gs`.
+4. En Apps Script, abre **Project Settings → Script properties** y define:
+   - `SHEET_ID`: ID de tu hoja de cálculo.
+   - `ALLOWED_ORIGIN`: URL exacta donde se hospedará el sitio (ej. `https://tu-dominio.com`).
+   - `SEND_CALENDLY_EMAIL`: `true` o `false` según quieras enviar email automático al confirmar.
+   - `NOTIFY_EMAIL`: Correo desde el cual se enviará y se registrará la confirmación.
+   - `CALENDLY_BASE_URL`: URL de tu enlace de Calendly (obligatorio si usas correo).
+5. Guarda y despliega como **Web App**:
+   - Ejecutar como: **Tú (propietario)**.
+   - Quién tiene acceso: **Cualquiera** o **Cualquiera con el enlace**.
+6. Copia el URL de despliegue e introdúcelo en `appsScriptEndpoint` dentro de `public/data/site.config.json`.
+7. (Opcional) Actualiza el enlace `calendlyBaseUrl` en `site.config.json`; se usa para el botón de Calendly y para el email.
+8. Realiza un envío de prueba desde el formulario. Verifica que la fila se agregue en Sheets y que el correo se envíe (si está habilitado).
 
-## Accessibility checklist
-- Ensure focus order follows the visual flow. Use the provided skip link.
-- Verify color contrast meets WCAG AA; adjust CSS variables if needed.
-- Provide text alternatives for all media.
-- If users prefer reduced motion, animations and autoplay video are disabled.
+## Personalización rápida
+- **Texto e idiomas**: Edita `public/data/strings.json`. Cada clave tiene traducción en español e inglés.
+- **Contenido de modales**: Modifica `public/data/content.json` (HTML permitido dentro de los valores `body`).
+- **Invitados**: Agrega o elimina nombres en `public/data/invitees.json`.
+- **Configuración general**: Ajusta `public/data/site.config.json` (título, fecha ISO, URLs, endpoints, Calendly, redes sociales).
+- **Estilos**: Cambia variables en `public/styles.css` (`:root`).
+- **Medios**: Reemplaza los archivos en `public/assets/` con imágenes y videos optimizados (mismos nombres o actualiza las rutas en `index.html`).
 
-## Troubleshooting
-- Form not submitting? Check the browser console for errors and the Apps Script Execution log.
-- No spreadsheet row? Confirm `SHEET_ID`, `SHEET_NAME`, and deployment permissions.
-- Autoplay blocked? Users may need to tap the hero video; the poster image will display otherwise.
+## Flujo offline y reintentos
+- Si el usuario envía el RSVP sin conexión, la solicitud se almacena en `localStorage` y se reintenta automáticamente cuando regrese la conectividad o la pestaña recupere foco.
+
+## Pruebas recomendadas
+- Envía respuestas tanto confirmando asistencia como rechazándola.
+- Desconecta tu red y envía un RSVP para validar la cola offline.
+- Cambia de idioma con el switch ES/EN y verifica textos.
+- Verifica la navegación por teclado y lector de pantalla.
+
+## Calendly (opcional)
+- Si `sendCalendlyEmail` es `true`, Apps Script enviará un correo con el enlace de Calendly cuando la respuesta sea "Sí".
+- Si prefieres no enviar correo automático, establece `sendCalendlyEmail` en `false`. El sitio mostrará un botón inline que abre el widget de Calendly usando `calendlyBaseUrl`.
+
+## Mantenimiento
+- Revisa periódicamente los registros en Google Apps Script (**Execution log**) para detectar errores.
+- Vacía la cola de RSVP guardada si cambias el endpoint (limpia el almacenamiento local del navegador).
+- Optimiza y comprime imágenes/videos antes de subirlos para mantener un rendimiento alto.
