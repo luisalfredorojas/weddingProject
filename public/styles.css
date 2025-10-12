@@ -61,6 +61,7 @@ a {
   transform: translateY(0);
 }
 
+
 .site-header {
   position: fixed;
   top: 0;
@@ -69,15 +70,18 @@ a {
   z-index: 10;
   padding: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2vw, 2rem);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   pointer-events: none;
 }
 
 .header-inner {
-  width: min(1200px, 100%);
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
+  width: auto;
+  max-width: min(1200px, 100%);
+  justify-content: flex-start;
+  gap: clamp(0.5rem, 1vw, 1rem);
   align-items: center;
+  align-self: flex-start;
   pointer-events: auto;
   backdrop-filter: blur(14px);
   background: color-mix(in srgb, var(--bg-100) 80%, transparent);
@@ -182,6 +186,14 @@ a {
   display: grid;
   min-height: clamp(240px, 60svh, 100%);
 
+}
+
+.panel--hero .carousel {
+  width: 80%;
+  height: 80%;
+  justify-self: center;
+  align-self: stretch;
+  max-width: 1000px;
 }
 
 .carousel-viewport {

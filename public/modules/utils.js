@@ -142,12 +142,55 @@ export function safeLocalStorage() {
 
 export const storage = safeLocalStorage();
 
-export function formatDate(date) {
+function getDateFormatter(lang = document.documentElement?.lang) {
+  const locale = lang || 'es';
+
+  if (locale.startsWith('en')) {
+    return new Intl.DateTimeFormat('en-US', {
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric'
+    });
+  }
+
+  if (locale.startsWith('es')) {
+    return new Intl.DateTimeFormat('es-MX', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  }
+
+  return new Intl.DateTimeFormat(locale, {
+    dateStyle: 'long'
+  });
+}
+
+export function formatDate(date, lang = document.documentElement?.lang) {
   try {
-    return new Intl.DateTimeFormat(document.documentElement.lang, {
-      dateStyle: 'long'
-    }).format(new Date(date));
+    const parsed = new Date(date);
+    if (Number.isNaN(parsed.getTime())) {
+      return date;
+    }
+
+    return getDateFormatter(lang).format(parsed);
   } catch (error) {
     return date;
+  }
+}
+
+export function getDateParts(date, lang = document.documentElement?.lang) {
+  try {
+    const parsed = new Date(date);
+    if (Number.isNaN(parsed.getTime())) {
+      return [];
+    }
+
+    return getDateFormatter(lang)
+      .formatToParts(parsed)
+      .filter(part => part.type !== 'literal')
+      .map(part => part.value);
+  } catch (error) {
+    return [];
   }
 }

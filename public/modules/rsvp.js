@@ -1,9 +1,9 @@
 'use strict';
 
-import { fetchJSON, storage, formatDate } from './utils.js';
+import { fetchJSON, storage, formatDate, getDateParts } from './utils.js';
 import { initTypeahead } from './typeahead.js';
 import { toast } from './toast.js';
-import { t, onLanguageChange } from './i18n.js';
+import { t, onLanguageChange, getCurrentLang } from './i18n.js';
 
 const CONFIG_URL = 'data/site.config.json';
 const QUEUE_KEY = 'rsvp:queue';
@@ -198,14 +198,25 @@ export async function initRSVP() {
 
   window.addEventListener('online', flushQueue);
 
-  if (config.eventDateIso) {
-    const displayDate = formatDate(config.eventDateIso);
+  function renderEventDate(lang = getCurrentLang()) {
+    if (!config.eventDateIso) return;
+    const displayDate = formatDate(config.eventDateIso, lang);
+    const dateParts = getDateParts(config.eventDateIso, lang);
     document.querySelectorAll('[data-dynamic="eventDate"]').forEach(el => {
       el.textContent = displayDate;
     });
+    const decorativeDate = dateParts.length ? dateParts.join(' · ') : displayDate.replace(/[\s/,-]+/g, ' · ');
+    document
+      .querySelectorAll('[data-dynamic="eventDateDecorative"]')
+      .forEach(el => {
+        el.textContent = decorativeDate;
+      });
   }
 
-  onLanguageChange(() => {
+  renderEventDate();
+
+  onLanguageChange(lang => {
+    renderEventDate(lang);
     const submitButton = form.querySelector('button[type="submit"]');
     if (submitButton) {
       submitButton.textContent = t('submitLabel');
