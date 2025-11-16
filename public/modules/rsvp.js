@@ -11,6 +11,7 @@ const QUEUE_KEY = 'rsvp:queue';
 let config = {};
 let calendlyButton;
 let calendlyWrapper;
+let countdownInterval;
 
 function getQueue() {
   try {
@@ -126,6 +127,7 @@ export async function initRSVP() {
 
   const typeahead = await initTypeahead(form.querySelector('[data-typeahead]'));
   void typeahead;
+  const songsField = initSongsField(form);
 
   const allergiesField = form.querySelector('#allergies');
   allergiesField?.addEventListener('input', () => updateAllergyCounter(allergiesField));
@@ -138,6 +140,7 @@ export async function initRSVP() {
     const name = formData.get('name').trim();
     const allergies = formData.get('allergies').trim();
     const attendance = formData.get('attendance');
+    const songs = (formData.get('songs') || '').trim();
 
     let hasError = false;
     if (!name) {
@@ -165,7 +168,8 @@ export async function initRSVP() {
       attendance,
       submittedAt: new Date().toISOString(),
       userAgent: navigator.userAgent,
-      shouldSendCalendlyEmail: attendance === 'yes' && Boolean(config.sendCalendlyEmail)
+      shouldSendCalendlyEmail: attendance === 'yes' && Boolean(config.sendCalendlyEmail),
+      songs
     };
 
     const submitButton = form.querySelector('button[type="submit"]');
@@ -177,6 +181,7 @@ export async function initRSVP() {
       toast(t('toastSuccess'));
       form.reset();
       updateAllergyCounter(allergiesField);
+      songsField?.clear();
       toggleCalendly(attendance === 'yes' && Boolean(config.calendlyBaseUrl));
     } catch (error) {
       const queue = getQueue();
@@ -214,6 +219,11 @@ export async function initRSVP() {
   }
 
   renderEventDate();
+  renderCountdown();
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+  }
+  countdownInterval = window.setInterval(renderCountdown, 60 * 60 * 1000);
 
   onLanguageChange(lang => {
     renderEventDate(lang);
@@ -224,4 +234,91 @@ export async function initRSVP() {
   });
 
   flushQueue();
+}
+
+function initSongsField(form) {
+  const wrapper = form.querySelector('[data-song-field]');
+  if (!wrapper) return null;
+  const chipsWrapper = wrapper.querySelector('[data-song-chips]');
+  const entry = wrapper.querySelector('[data-song-entry]');
+  const hiddenInput = wrapper.querySelector('[data-song-hidden]');
+  if (!chipsWrapper || !entry || !hiddenInput) return null;
+
+  let songs = [];
+
+  function updateHiddenInput() {
+    hiddenInput.value = songs.join(', ');
+  }
+
+  function renderChips() {
+    chipsWrapper.innerHTML = '';
+    songs.forEach((song, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'tag-chip';
+      const labelSpan = document.createElement('span');
+      labelSpan.textContent = song;
+      const iconSpan = document.createElement('span');
+      iconSpan.setAttribute('aria-hidden', 'true');
+      iconSpan.textContent = '×';
+      button.append(labelSpan, iconSpan);
+      button.setAttribute('aria-label', `${song} — ${t('songRemoveLabel')}`);
+      button.addEventListener('click', () => removeSong(index));
+      chipsWrapper.append(button);
+    });
+    updateHiddenInput();
+  }
+
+  function removeSong(index) {
+    songs.splice(index, 1);
+    renderChips();
+  }
+
+  function addSongsFromValue(value) {
+    const candidates = value
+      .split(',')
+      .map(item => item.trim())
+      .filter(Boolean);
+    if (!candidates.length) return;
+    songs = [...songs, ...candidates];
+    renderChips();
+  }
+
+  entry.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ',') {
+      event.preventDefault();
+      addSongsFromValue(entry.value);
+      entry.value = '';
+    } else if (event.key === 'Backspace' && !entry.value && songs.length) {
+      songs.pop();
+      renderChips();
+    }
+  });
+
+  entry.addEventListener('blur', () => {
+    addSongsFromValue(entry.value);
+    entry.value = '';
+  });
+
+  renderChips();
+  onLanguageChange(() => renderChips());
+
+  return {
+    clear() {
+      songs = [];
+      renderChips();
+      entry.value = '';
+    }
+  };
+}
+
+function renderCountdown() {
+  if (!config.eventDateIso) return;
+  const displayEl = document.querySelector('[data-countdown-days]');
+  if (!displayEl) return;
+  const eventDate = new Date(config.eventDateIso);
+  const now = new Date();
+  const diffMs = eventDate.getTime() - now.getTime();
+  const days = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+  displayEl.textContent = String(days).padStart(2, '0');
 }

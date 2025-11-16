@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><!-- TODO: Reemplazar con título del sitio -->Luis & Maria Emilia · Nuestra Boda</title>
-  <meta name="description" content="<!-- TODO: Actualizar descripción -->Acompáñanos para celebrar nuestro amor el 20/06/2005." />
+  <meta name="description" content="<!-- TODO: Actualizar descripción -->Acompáñanos para celebrar nuestro amor el 20/06/2026." />
   <link rel="icon" href="assets/favicon.ico" />
   <meta property="og:title" content="Luis & Maria Emilia · Nuestra Boda" />
-  <meta property="og:description" content="Celebra con nosotros el 20/06/2005." />
+  <meta property="og:description" content="Celebra con nosotros el 20/06/2026." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="<!-- TODO: Añadir URL canónica -->https://example.com" />
   <meta property="og:image" content="assets/og-image.jpg" />
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:title" content="Luis & Maria Emilia · Nuestra Boda" />
-  <meta property="twitter:description" content="Celebra con nosotros el 20/06/2005." />
+  <meta property="twitter:description" content="Celebra con nosotros el 20/06/2026." />
   <meta property="twitter:image" content="assets/og-image.jpg" />
   <link rel="canonical" href="https://example.com" />
   <link rel="preload" href="styles.css" as="style" />
@@ -23,7 +23,7 @@
     "@context": "https://schema.org",
     "@type": "Event",
     "name": "Luis & Maria Emilia · Nuestra Boda",
-    "startDate": "2005-06-20T17:00:00-05:00",
+    "startDate": "2026-06-20T17:00:00-05:00",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "eventStatus": "https://schema.org/EventScheduled",
     "location": {
@@ -46,7 +46,8 @@
   <a href="#section-1" class="skip-link" data-i18n="skipToContent">Saltar al contenido</a>
   <header class="site-header" role="banner">
     <div class="header-inner">
-      <p class="header-date" data-dynamic="eventDate">20/06/2005</p>
+      <button type="button" class="lang-toggle" data-i18n="langToggle" aria-label="Cambiar o alternar el idioma">ES / EN</button>
+      <p class="header-date" data-dynamic="eventDate">20/06/2026</p>
     </div>
   </header>
   <main id="main" class="main" role="main" aria-live="polite">
@@ -64,7 +65,7 @@
       <div class="panel-inner">
         <p class="intro-eyebrow">Bienvenidos</p>
         <h1 id="hero-title" data-i18n="heroTitle">Luis &amp; Maria Emilia</h1>
-        <p class="hero-subtitle" data-i18n="heroSubtitle">20/06/2005 · Ciudad de México</p>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">20/06/2026 · Ciudad de México</p>
         <p class="intro-copy">Acompáñanos a descubrir cada detalle de nuestro gran día. Desliza para explorar cada escena de esta historia.</p>
         <button type="button" class="intro-scroll" data-nav-next>
           <span>Ver siguiente sección</span>
@@ -95,6 +96,25 @@
               <span id="allergies-count" data-i18n="fieldAllergiesCounter" data-count="0">0 / 200</span>
             </div>
             <p class="field-error" data-error-for="allergies" hidden></p>
+          </div>
+          <div class="form-group form-group--songs">
+            <label for="songs-input" data-i18n="fieldSongsLabel">Canciones para la fiesta</label>
+            <div class="tag-input" data-song-field>
+              <div class="tag-input__chips" data-song-chips></div>
+              <input
+                type="text"
+                id="songs-input"
+                class="tag-input__entry"
+                data-song-entry
+                data-i18n="fieldSongsPlaceholder"
+                placeholder="Escribe una canción y presiona enter"
+                autocomplete="off"
+                aria-describedby="songs-hint"
+              />
+              <input type="hidden" name="songs" data-song-hidden />
+            </div>
+            <p id="songs-hint" class="field-hint" data-i18n="fieldSongsHint">Separa cada canción con una coma. Presiona enter para guardarlas.</p>
+            <p class="field-error" data-error-for="songs" hidden></p>
           </div>
           <fieldset class="form-group" data-required-group>
             <legend data-i18n="fieldAttendanceLabel">¿Podrás acompañarnos?</legend>
@@ -159,23 +179,11 @@
       <div class="panel-inner">
         <h2 id="thanks-title" data-i18n="thanksTitle">¡Gracias por celebrar con nosotros!</h2>
         <p class="panel-description">Mantente atento, en segundos te llevaremos al inicio para que recorras cada sección.</p>
-        <figure class="thanks-art" aria-labelledby="thanks-caption">
-          <svg viewBox="0 0 400 200" role="img" aria-labelledby="thanks-caption">
-            <title id="thanks-caption">Mensaje de agradecimiento decorativo</title>
-            <defs>
-              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="var(--accent-500)" />
-                <stop offset="100%" stop-color="var(--primary-500)" />
-              </linearGradient>
-            </defs>
-            <g class="thanks-animate">
-              <text x="50%" y="40%" text-anchor="middle" class="thanks-text">Luis &amp; Maria Emilia</text>
-              <path d="M40 120 Q200 40 360 120" fill="none" stroke="url(#grad)" stroke-width="5" stroke-linecap="round" />
-              <text x="50%" y="160" text-anchor="middle" class="thanks-date" data-dynamic="eventDateDecorative">20 · 06 · 2005</text>
-            </g>
-          </svg>
-          <figcaption data-i18n="thanksCaption">¡Gracias por celebrar con nosotros! — Luis &amp; Maria Emilia · 20/06/2005</figcaption>
-        </figure>
+        <div class="countdown" data-countdown role="status" aria-live="polite">
+          <p class="countdown-label" data-i18n="countdownLead">Faltan</p>
+          <p class="countdown-value"><span data-countdown-days>000</span></p>
+          <p class="countdown-caption" data-i18n="countdownCaption">días para la boda</p>
+        </div>
       </div>
     </section>
   </main>
