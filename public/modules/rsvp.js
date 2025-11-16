@@ -223,7 +223,7 @@ export async function initRSVP() {
   if (countdownInterval) {
     clearInterval(countdownInterval);
   }
-  countdownInterval = window.setInterval(renderCountdown, 60 * 60 * 1000);
+  countdownInterval = window.setInterval(renderCountdown, 1000);
 
   onLanguageChange(lang => {
     renderEventDate(lang);
@@ -314,11 +314,23 @@ function initSongsField(form) {
 
 function renderCountdown() {
   if (!config.eventDateIso) return;
-  const displayEl = document.querySelector('[data-countdown-days]');
-  if (!displayEl) return;
+  const daysEl = document.querySelector('[data-countdown-days]');
+  const hoursEl = document.querySelector('[data-countdown-hours]');
+  const minutesEl = document.querySelector('[data-countdown-minutes]');
+  const secondsEl = document.querySelector('[data-countdown-seconds]');
+  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
   const eventDate = new Date(config.eventDateIso);
   const now = new Date();
-  const diffMs = eventDate.getTime() - now.getTime();
-  const days = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
-  displayEl.textContent = String(days).padStart(2, '0');
+  const diffMs = Math.max(0, eventDate.getTime() - now.getTime());
+  const dayMs = 1000 * 60 * 60 * 24;
+  const hourMs = 1000 * 60 * 60;
+  const minuteMs = 1000 * 60;
+  const days = Math.floor(diffMs / dayMs);
+  const hours = Math.floor((diffMs % dayMs) / hourMs);
+  const minutes = Math.floor((diffMs % hourMs) / minuteMs);
+  const seconds = Math.floor((diffMs % minuteMs) / 1000);
+  daysEl.textContent = String(days).padStart(2, '0');
+  hoursEl.textContent = String(hours).padStart(2, '0');
+  minutesEl.textContent = String(minutes).padStart(2, '0');
+  secondsEl.textContent = String(seconds).padStart(2, '0');
 }
