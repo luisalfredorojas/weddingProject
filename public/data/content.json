@@ -12,6 +12,10 @@
       "title": "Código de vestimenta",
       "body": "<p>Vestimenta formal de gala en tonos cálidos y neutrales. Sugerimos vestidos largos, trajes oscuros o guayaberas formales.</p><ul><li>Evita el color blanco.</li><li>Trae un abrigo ligero para la noche.</li><li>Zapatos cómodos para césped.</li></ul>"
     },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "body": "<ul><li><strong>¿Puedo llevar acompañante?</strong> Consulta tu invitación, ahí indicamos el número de lugares asignados.</li><li><strong>¿Hay transporte?</strong> Contaremos con transporte redondo saliendo de Polanco a las 15:30 hrs. Confírmanos si lo requieres.</li><li><strong>¿Niños?</strong> Amamos a los pequeños, pero esta vez será un evento solo para adultos.</li></ul>"
+    },
     "gifts": {
       "title": "Regalos y lista de deseos",
       "body": "<p>Tu presencia es nuestro mejor regalo. Si deseas apoyarnos, hemos preparado algunas opciones:</p><ul><li><a href=\"https://www.amazon.com.mx/hz/wishlist/ls/XXXXXXXX\" target=\"_blank\" rel=\"noopener\">Lista de Amazon</a></li><li>Fondo para luna de miel (datos bancarios disponibles bajo solicitud).</li><li>Mesa de regalos Liverpool: Código 123456.</li></ul>"
