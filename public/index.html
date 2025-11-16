@@ -61,17 +61,8 @@
     <button class="nav-arrow nav-arrow--down" type="button" aria-label="Siguiente sección" data-nav-next>
       <span aria-hidden="true">▼</span>
     </button>
-    <section id="section-1" class="panel panel--section panel--intro panel--section1" data-panel-index="0" aria-labelledby="hero-title">
-      <div class="panel-inner">
-        <p class="intro-eyebrow">Bienvenidos</p>
-        <h1 id="hero-title" data-i18n="heroTitle">Luis &amp; Maria Emilia</h1>
-        <p class="hero-subtitle" data-i18n="heroSubtitle">20/06/2026 · Ciudad de México</p>
-        <p class="intro-copy">Acompáñanos a descubrir cada detalle de nuestro gran día. Desliza para explorar cada escena de esta historia.</p>
-        <button type="button" class="intro-scroll" data-nav-next>
-          <span>Ver siguiente sección</span>
-          <span aria-hidden="true">↓</span>
-        </button>
-      </div>
+    <section id="section-1" class="panel panel--section panel--intro panel--section1" data-panel-index="0" aria-label="Sección inicial">
+      <div class="panel-inner" aria-hidden="true"></div>
     </section>
     <section id="section-2" class="panel panel--section panel--section2" data-panel-index="1" aria-labelledby="rsvp-title">
       <div class="panel-inner">
@@ -140,13 +131,8 @@
         </div>
       </div>
     </section>
-    <section id="section-3" class="panel panel--section panel--section3" data-panel-index="2" aria-labelledby="info-title">
+    <section id="section-3" class="panel panel--section panel--section3" data-panel-index="2" aria-label="Detalles interactivos">
       <div class="panel-inner">
-        <div class="info-content">
-          <p class="eyebrow">Guía para tus preparativos</p>
-          <h2 id="info-title">Explora cada detalle</h2>
-          <p>Selecciona cualquiera de las áreas para abrir un resumen con la información correspondiente.</p>
-        </div>
         <div class="info-overlays">
           <button type="button" class="info-overlay" data-modal-trigger="dresscode" aria-label="Código de vestimenta">
             <span class="overlay-label">Dresscode</span>
@@ -181,8 +167,28 @@
         <p class="panel-description">Mantente atento, en segundos te llevaremos al inicio para que recorras cada sección.</p>
         <div class="countdown" data-countdown role="status" aria-live="polite">
           <p class="countdown-label" data-i18n="countdownLead">Faltan</p>
-          <p class="countdown-value"><span data-countdown-days>000</span></p>
-          <p class="countdown-caption" data-i18n="countdownCaption">días para la boda</p>
+          <div class="countdown-grid" aria-live="off">
+            <div class="countdown-segment">
+              <span class="countdown-number" data-countdown-days>000</span>
+              <span class="countdown-unit" data-i18n="countdownDays">Día</span>
+            </div>
+            <span class="countdown-divider" aria-hidden="true">:</span>
+            <div class="countdown-segment">
+              <span class="countdown-number" data-countdown-hours>00</span>
+              <span class="countdown-unit" data-i18n="countdownHours">Hora</span>
+            </div>
+            <span class="countdown-divider" aria-hidden="true">:</span>
+            <div class="countdown-segment">
+              <span class="countdown-number" data-countdown-minutes>00</span>
+              <span class="countdown-unit" data-i18n="countdownMinutes">Minuto</span>
+            </div>
+            <span class="countdown-divider" aria-hidden="true">:</span>
+            <div class="countdown-segment">
+              <span class="countdown-number" data-countdown-seconds>00</span>
+              <span class="countdown-unit" data-i18n="countdownSeconds">Segundo</span>
+            </div>
+          </div>
+          <p class="countdown-caption" data-i18n="countdownCaption">para la boda</p>
         </div>
       </div>
     </section>
