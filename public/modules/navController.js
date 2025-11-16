@@ -2,7 +2,7 @@
 
 import { throttle, prefersReducedMotion, createUnlockScrollToggle } from './utils.js';
 import { t, onLanguageChange } from './i18n.js';
-export function initNavController() {
+export function initNavController(options = {}) {
   const panels = Array.from(document.querySelectorAll('.panel'));
   const statusEl = document.querySelector('[data-progress-status]');
   const dotsContainer = document.querySelector('[data-progress-dots]');
@@ -12,9 +12,14 @@ export function initNavController() {
 
   if (!panels.length) return;
 
-  let currentIndex = 0;
+  const totalPanels = panels.length;
+  const initialIndex = clampIndex(options.initialIndex ?? 0, totalPanels);
+  const autoRedirect = options.autoRedirect;
+
+  let currentIndex = initialIndex;
   let isAnimating = false;
   let touchStartY = null;
+  let autoRedirectTimer = null;
 
   function updateStatusText() {
     if (!statusEl) return;
@@ -61,6 +66,10 @@ export function initNavController() {
     if (index < 0 || index >= panels.length) return;
     if (index === currentIndex) return;
     if (isAnimating) return;
+    if (autoRedirectTimer) {
+      window.clearTimeout(autoRedirectTimer);
+      autoRedirectTimer = null;
+    }
     isAnimating = true;
     currentIndex = index;
     updatePositions();
@@ -142,8 +151,21 @@ export function initNavController() {
   });
 
   updatePositions();
-  panels[0]?.focus({ preventScroll: true });
+  panels[currentIndex]?.focus({ preventScroll: true });
   createUnlockScrollToggle(document.body);
+
+  if (
+    autoRedirect &&
+    typeof autoRedirect.targetIndex === 'number' &&
+    autoRedirect.targetIndex !== initialIndex &&
+    totalPanels > 1
+  ) {
+    const delay = Math.max(0, autoRedirect.delay ?? 3000);
+    autoRedirectTimer = window.setTimeout(() => {
+      autoRedirectTimer = null;
+      goTo(clampIndex(autoRedirect.targetIndex, totalPanels));
+    }, delay);
+  }
 
   return {
     goTo,
@@ -151,4 +173,10 @@ export function initNavController() {
       return currentIndex;
     }
   };
+}
+
+function clampIndex(index, total) {
+  if (total <= 0) return 0;
+  const safeIndex = Number.isFinite(index) ? index : 0;
+  return Math.min(Math.max(0, safeIndex), total - 1);
 }

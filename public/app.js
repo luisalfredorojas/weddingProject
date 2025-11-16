@@ -1,5 +1,4 @@
 import { initNavController } from './modules/navController.js';
-import { initCarousel } from './modules/carousel.js';
 import { createModalManager } from './modules/modal.js';
 import { initRSVP } from './modules/rsvp.js';
 import { initI18n } from './modules/i18n.js';
@@ -9,10 +8,14 @@ import { toast } from './modules/toast.js';
 async function bootstrap() {
   await initI18n();
 
-  const heroCarousel = document.querySelector('[data-carousel]');
-  initCarousel(heroCarousel);
-
-  const nav = initNavController();
+  const panelCount = document.querySelectorAll('.panel').length;
+  const nav = initNavController({
+    initialIndex: Math.max(0, panelCount - 1),
+    autoRedirect: {
+      targetIndex: 0,
+      delay: 3500
+    }
+  });
   void nav;
 
   try {

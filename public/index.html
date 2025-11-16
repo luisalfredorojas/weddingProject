@@ -47,7 +47,6 @@
   <header class="site-header" role="banner">
     <div class="header-inner">
       <p class="header-date" data-dynamic="eventDate">20/06/2005</p>
-      <button class="lang-toggle" type="button" aria-label="Cambiar idioma" data-i18n="langToggle">ES / EN</button>
     </div>
   </header>
   <main id="main" class="main" role="main" aria-live="polite">
@@ -61,60 +60,24 @@
     <button class="nav-arrow nav-arrow--down" type="button" aria-label="Siguiente sección" data-nav-next>
       <span aria-hidden="true">▼</span>
     </button>
-    <section id="section-1" class="panel panel--hero" data-panel-index="0" aria-labelledby="hero-title">
+    <section id="section-1" class="panel panel--section panel--intro panel--section1" data-panel-index="0" aria-labelledby="hero-title">
       <div class="panel-inner">
+        <p class="intro-eyebrow">Bienvenidos</p>
         <h1 id="hero-title" data-i18n="heroTitle">Luis &amp; Maria Emilia</h1>
         <p class="hero-subtitle" data-i18n="heroSubtitle">20/06/2005 · Ciudad de México</p>
-        <div class="carousel" data-carousel>
-          <div class="carousel-viewport" data-carousel-viewport>
-            <div class="carousel-track" data-carousel-track>
-              <article class="carousel-slide" data-type="image" data-src="assets/hero-1.jpg">
-                <img src="" alt="" loading="lazy" decoding="async" />
-                <p class="visually-hidden" data-i18n="slideOneCaption">Fotografía de los novios caminando entre árboles.</p>
-              </article>
-              <article class="carousel-slide" data-type="video" data-src="assets/hero-video.mp4">
-                <video preload="metadata" playsinline muted loop>
-                  <source src="" type="video/mp4" />
-                </video>
-                <p class="visually-hidden" data-i18n="slideTwoCaption">Video corto de risas y abrazos.</p>
-              </article>
-              <article class="carousel-slide" data-type="image" data-src="assets/hero-2.jpg">
-                <img src="" alt="" loading="lazy" decoding="async" />
-                <p class="visually-hidden" data-i18n="slideThreeCaption">Imagen de un arreglo floral con luces cálidas.</p>
-              </article>
-              <article class="carousel-slide" data-type="youtube" data-src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0&amp;controls=1&amp;modestbranding=1">
-                <iframe title="Video de la historia" src="" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                <p class="visually-hidden" data-i18n="slideFourCaption">Video de nuestra historia.</p>
-              </article>
-            </div>
-          </div>
-          <button class="carousel-control carousel-control--prev" type="button" aria-label="Anterior" data-carousel-prev>
-            <span aria-hidden="true">‹</span>
-          </button>
-          <button class="carousel-control carousel-control--next" type="button" aria-label="Siguiente" data-carousel-next>
-            <span aria-hidden="true">›</span>
-          </button>
-          <div class="carousel-dots" data-carousel-dots aria-hidden="true"></div>
-        </div>
+        <p class="intro-copy">Acompáñanos a descubrir cada detalle de nuestro gran día. Desliza para explorar cada escena de esta historia.</p>
+        <button type="button" class="intro-scroll" data-nav-next>
+          <span>Ver siguiente sección</span>
+          <span aria-hidden="true">↓</span>
+        </button>
       </div>
     </section>
-    <section id="section-2" class="panel panel--ctas" data-panel-index="1" aria-labelledby="cta-title">
+    <section id="section-2" class="panel panel--section panel--section2" data-panel-index="1" aria-labelledby="rsvp-title">
       <div class="panel-inner">
-        <h2 id="cta-title" data-i18n="ctaTitle">Información importante</h2>
-        <p class="panel-description" data-i18n="ctaSubtitle">Selecciona cualquier botón para conocer los detalles del día.</p>
-        <div class="cta-grid" data-cta-buttons>
-          <button type="button" class="cta" data-modal-trigger="itinerary" data-i18n="ctaItinerary">Itinerario</button>
-          <button type="button" class="cta" data-modal-trigger="location" data-i18n="ctaLocation">Ubicación</button>
-          <button type="button" class="cta" data-modal-trigger="dresscode" data-i18n="ctaDresscode">Código de vestimenta</button>
-          <button type="button" class="cta" data-modal-trigger="gifts" data-i18n="ctaGifts">Regalos/Lista</button>
-        </div>
-      </div>
-    </section>
-    <section id="section-3" class="panel panel--rsvp" data-panel-index="2" aria-labelledby="rsvp-title">
-      <div class="panel-inner">
-        <h2 id="rsvp-title" data-i18n="rsvpTitle">Confirma tu asistencia</h2>
-        <p class="panel-description" data-i18n="rsvpSubtitle">Encuentra tu nombre en la lista y envía tu respuesta.</p>
-        <form id="rsvp-form" class="rsvp-form" novalidate>
+        <div class="rsvp-card">
+          <h2 id="rsvp-title" data-i18n="rsvpTitle">Confirma tu asistencia</h2>
+          <p class="panel-description" data-i18n="rsvpSubtitle">Encuentra tu nombre en la lista y envía tu respuesta.</p>
+          <form id="rsvp-form" class="rsvp-form" novalidate>
           <div class="form-group" data-typeahead>
             <label for="invitee-name" data-i18n="fieldNameLabel">Nombre</label>
             <div class="typeahead-wrapper">
@@ -154,11 +117,48 @@
             <button type="button" class="btn-secondary" data-calendly-button data-i18n="calendlyButton">Abrir Calendly</button>
           </div>
         </form>
+        </div>
       </div>
     </section>
-    <section id="section-4" class="panel panel--thanks" data-panel-index="3" aria-labelledby="thanks-title">
+    <section id="section-3" class="panel panel--section panel--section3" data-panel-index="2" aria-labelledby="info-title">
+      <div class="panel-inner">
+        <div class="info-content">
+          <p class="eyebrow">Guía para tus preparativos</p>
+          <h2 id="info-title">Explora cada detalle</h2>
+          <p>Selecciona cualquiera de las áreas para abrir un resumen con la información correspondiente.</p>
+        </div>
+        <div class="info-overlays">
+          <button type="button" class="info-overlay" data-modal-trigger="dresscode" aria-label="Código de vestimenta">
+            <span class="overlay-label">Dresscode</span>
+          </button>
+          <button type="button" class="info-overlay" data-modal-trigger="location" aria-label="Ubicación">
+            <span class="overlay-label">Ubicación</span>
+          </button>
+          <button type="button" class="info-overlay" data-modal-trigger="faq" aria-label="Preguntas frecuentes">
+            <span class="overlay-label">FAQ</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <section id="section-4" class="panel panel--section panel--visual panel--section4" data-panel-index="3" aria-label="Galería 1">
+      <div class="panel-inner">
+        <span class="visually-hidden">Recuerdo visual de la celebración.</span>
+      </div>
+    </section>
+    <section id="section-5" class="panel panel--section panel--visual panel--section5" data-panel-index="4" aria-label="Galería 2">
+      <div class="panel-inner">
+        <span class="visually-hidden">Detalle floral de la boda.</span>
+      </div>
+    </section>
+    <section id="section-6" class="panel panel--section panel--visual panel--section6" data-panel-index="5" aria-label="Galería 3">
+      <div class="panel-inner">
+        <span class="visually-hidden">Instante romántico de la pareja.</span>
+      </div>
+    </section>
+    <section id="section-7" class="panel panel--section panel--celebration panel--section7" data-panel-index="6" aria-labelledby="thanks-title">
       <div class="panel-inner">
         <h2 id="thanks-title" data-i18n="thanksTitle">¡Gracias por celebrar con nosotros!</h2>
+        <p class="panel-description">Mantente atento, en segundos te llevaremos al inicio para que recorras cada sección.</p>
         <figure class="thanks-art" aria-labelledby="thanks-caption">
           <svg viewBox="0 0 400 200" role="img" aria-labelledby="thanks-caption">
             <title id="thanks-caption">Mensaje de agradecimiento decorativo</title>
