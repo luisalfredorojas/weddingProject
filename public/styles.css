@@ -255,48 +255,79 @@ a {
 }
 
 .info-overlays {
-  width: min(1000px, 90vw);
-  min-height: clamp(260px, 45vh, 420px);
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: center;
+  justify-items: center;
 }
 
 .info-overlay {
   border: none;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 1rem;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
-  position: relative;
-  color: transparent;
-  transition: background 250ms ease, transform 250ms ease, border 250ms ease;
-  border: 2px solid transparent;
+  transition: transform 250ms ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  opacity: 0; /* Hidden by default for animation */
 }
 
-.info-overlay .overlay-label {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 250ms ease;
+.panel--section3.is-active .info-overlay {
+  animation: fadeInUp 1000ms ease forwards;
+}
+
+.panel--section3.is-active .info-overlay:nth-child(2) {
+  animation-delay: 300ms;
+}
+
+.panel--section3.is-active .info-overlay:nth-child(3) {
+  animation-delay: 600ms;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-overlay img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-width: 300px; /* Prevent them from getting too huge */
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+  transition: filter 250ms ease;
 }
 
 .info-overlay:hover,
 .info-overlay:focus-visible {
-  border-color: rgba(255,255,255,0.7);
-  background: rgba(0, 0, 0, 0.35);
-  transform: translateY(-4px);
+  /* We use !important or specific selector to ensure hover transform overrides animation final state if needed, 
+     but usually transform from animation fills. 
+     Actually, filling mode might conflict with hover transform. 
+     Let's use a wrapper or ensure hover works after animation.
+     The simple way: apply animation to the button, but hover transform also applies to button.
+     If animation ends at translateY(0), hover can do translateY(-6px).
+  */
+  transform: translateY(-6px);
 }
 
-.info-overlay:hover .overlay-label,
-.info-overlay:focus-visible .overlay-label {
-  opacity: 1;
+.info-overlay:hover img,
+.info-overlay:focus-visible img {
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
 }
+
+
 
 .panel--visual .panel-inner {
   width: 100%;

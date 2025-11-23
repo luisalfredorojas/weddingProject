@@ -48,6 +48,7 @@ export function initNavController(options = {}) {
       const translateY = offset * 100;
       panel.style.transform = `translate3d(0, ${translateY}%, 0)`;
       panel.inert = index !== currentIndex;
+      panel.classList.toggle('is-active', index === currentIndex);
       if (index === currentIndex) {
         panel.removeAttribute('aria-hidden');
       } else {
