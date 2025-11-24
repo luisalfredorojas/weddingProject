@@ -18,6 +18,9 @@
   <link rel="canonical" href="https://example.com" />
   <link rel="preload" href="styles.css" as="style" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -62,6 +65,10 @@
       <span aria-hidden="true">▼</span>
     </button>
     <section id="section-1" class="panel panel--section panel--intro panel--section1" data-panel-index="0" aria-label="Sección inicial">
+      <img src="assets/section1-monograma.png" class="visual-layer" alt="" loading="eager" />
+      <img src="assets/section1-nombres.png" class="visual-layer" alt="" loading="eager" />
+      <img src="assets/section1-frase.png" class="visual-layer" alt="" loading="eager" />
+      <img src="assets/section1-boton.png" class="visual-layer" alt="" loading="eager" />
       <div class="panel-inner" aria-hidden="true"></div>
     </section>
     <section id="section-2" class="panel panel--section panel--section2" data-panel-index="1" aria-labelledby="rsvp-title">
@@ -71,7 +78,7 @@
           <p class="panel-description" data-i18n="rsvpSubtitle">Encuentra tu nombre en la lista y envía tu respuesta.</p>
           <form id="rsvp-form" class="rsvp-form" novalidate>
           <div class="form-group" data-typeahead>
-            <label for="invitee-name" data-i18n="fieldNameLabel">Nombre</label>
+            <label for="invitee-name" data-i18n="fieldNameLabel">Nombre y apellido</label>
             <div class="typeahead-wrapper">
               <input type="text" id="invitee-name" name="name" autocomplete="off" inputmode="text" required aria-describedby="name-hint" />
               <ul class="typeahead-results" role="listbox" aria-label="Resultados" hidden></ul>
@@ -89,7 +96,7 @@
             <p class="field-error" data-error-for="allergies" hidden></p>
           </div>
           <div class="form-group form-group--songs">
-            <label for="songs-input" data-i18n="fieldSongsLabel">Canciones para la fiesta</label>
+            <label for="songs-input" data-i18n="fieldSongsLabel">¡Recomiéndanos canciones!</label>
             <div class="tag-input" data-song-field>
               <div class="tag-input__chips" data-song-chips></div>
               <input
@@ -108,7 +115,7 @@
             <p class="field-error" data-error-for="songs" hidden></p>
           </div>
           <fieldset class="form-group" data-required-group>
-            <legend data-i18n="fieldAttendanceLabel">¿Podrás acompañarnos?</legend>
+            <legend data-i18n="fieldAttendanceLabel">¿Contamos con tu confirmación?</legend>
             <div class="radio-group">
               <label>
                 <input type="radio" name="attendance" value="yes" required />
@@ -146,49 +153,52 @@
         </div>
       </div>
     </section>
-    <section id="section-4" class="panel panel--section panel--visual panel--section4" data-panel-index="3" aria-label="Galería 1">
-      <div class="panel-inner">
-        <span class="visually-hidden">Recuerdo visual de la celebración.</span>
-      </div>
+    <section id="section-4" class="panel panel--section panel--visual panel--section4" data-panel-index="3" aria-label="Cronograma">
+      <img src="assets/section4-icon-ceremonia.png" class="visual-layer" alt="Ceremonia" loading="lazy" />
+      <img src="assets/section4-icon-brindis.png" class="visual-layer" alt="Brindis" loading="lazy" />
+      <img src="assets/section4-icon-cena.png" class="visual-layer" alt="Cena" loading="lazy" />
+      <img src="assets/section4-icon-fiestita.png" class="visual-layer" alt="Fiesta" loading="lazy" />
+      <div class="panel-inner"></div>
     </section>
-    <section id="section-5" class="panel panel--section panel--visual panel--section5" data-panel-index="4" aria-label="Galería 2">
-      <div class="panel-inner">
-        <span class="visually-hidden">Detalle floral de la boda.</span>
-      </div>
+    <section id="section-5" class="panel panel--section panel--visual panel--section5" data-panel-index="4" aria-label="Regalo">
+      <img src="assets/section5-icon-regalo.png" class="visual-layer" alt="Regalo" loading="lazy" />
+      <div class="panel-inner"></div>
     </section>
-    <section id="section-6" class="panel panel--section panel--visual panel--section6" data-panel-index="5" aria-label="Galería 3">
-      <div class="panel-inner">
-        <span class="visually-hidden">Instante romántico de la pareja.</span>
-      </div>
+    <section id="section-6" class="panel panel--section panel--visual panel--section6" data-panel-index="5" aria-label="Cierre">
+      <img src="assets/section6-frase.png" class="visual-layer" alt="Frase cierre" loading="lazy" />
+      <div class="panel-inner"></div>
     </section>
     <section id="section-7" class="panel panel--section panel--celebration panel--section7" data-panel-index="6" aria-labelledby="thanks-title">
+      <img src="assets/section7-etiqueta.png" class="visual-layer" alt="" loading="lazy" />
       <div class="panel-inner">
-        <h2 id="thanks-title" data-i18n="thanksTitle">¡Gracias por celebrar con nosotros!</h2>
-        <p class="panel-description">Mantente atento, en segundos te llevaremos al inicio para que recorras cada sección.</p>
-        <div class="countdown" data-countdown role="status" aria-live="polite">
-          <p class="countdown-label" data-i18n="countdownLead">Faltan</p>
-          <div class="countdown-grid" aria-live="off">
-            <div class="countdown-segment">
-              <span class="countdown-number" data-countdown-days>000</span>
-              <span class="countdown-unit" data-i18n="countdownDays">Día</span>
+        <div class="countdown-wrapper">
+          <h2 id="thanks-title" data-i18n="thanksTitle">¡Gracias por celebrar con nosotros!</h2>
+          <p class="panel-description">Mantente atento, en segundos te llevaremos al inicio para que recorras cada sección.</p>
+          <div class="countdown" data-countdown role="status" aria-live="polite">
+            <p class="countdown-label" data-i18n="countdownLead">Faltan</p>
+            <div class="countdown-grid" aria-live="off">
+              <div class="countdown-segment">
+                <span class="countdown-number" data-countdown-days>000</span>
+                <span class="countdown-unit" data-i18n="countdownDays">Días</span>
+              </div>
+              <span class="countdown-divider" aria-hidden="true">:</span>
+              <div class="countdown-segment">
+                <span class="countdown-number" data-countdown-hours>00</span>
+                <span class="countdown-unit" data-i18n="countdownHours">Horas</span>
+              </div>
+              <span class="countdown-divider" aria-hidden="true">:</span>
+              <div class="countdown-segment">
+                <span class="countdown-number" data-countdown-minutes>00</span>
+                <span class="countdown-unit" data-i18n="countdownMinutes">Minutos</span>
+              </div>
+              <span class="countdown-divider" aria-hidden="true">:</span>
+              <div class="countdown-segment">
+                <span class="countdown-number" data-countdown-seconds>00</span>
+                <span class="countdown-unit" data-i18n="countdownSeconds">Segundos</span>
+              </div>
             </div>
-            <span class="countdown-divider" aria-hidden="true">:</span>
-            <div class="countdown-segment">
-              <span class="countdown-number" data-countdown-hours>00</span>
-              <span class="countdown-unit" data-i18n="countdownHours">Hora</span>
-            </div>
-            <span class="countdown-divider" aria-hidden="true">:</span>
-            <div class="countdown-segment">
-              <span class="countdown-number" data-countdown-minutes>00</span>
-              <span class="countdown-unit" data-i18n="countdownMinutes">Minuto</span>
-            </div>
-            <span class="countdown-divider" aria-hidden="true">:</span>
-            <div class="countdown-segment">
-              <span class="countdown-number" data-countdown-seconds>00</span>
-              <span class="countdown-unit" data-i18n="countdownSeconds">Segundo</span>
-            </div>
+            <p class="countdown-caption" data-i18n="countdownCaption">Para nuestro gran día</p>
           </div>
-          <p class="countdown-caption" data-i18n="countdownCaption">para la boda</p>
         </div>
       </div>
     </section>

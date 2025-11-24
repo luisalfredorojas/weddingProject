@@ -173,10 +173,13 @@ a {
 }
 
 .panel--section2 .panel-inner {
-  justify-items: flex-end;
+  justify-items: flex-start; /* Left align */
   align-content: center;
-  padding-block: clamp(3rem, 6vw, 5rem);
+  padding-block: 0; /* Remove padding to let card fit */
   text-shadow: none;
+  max-height: none; /* Disable generic panel scroll */
+  overflow-y: visible; /* Disable generic panel scroll */
+  height: 100%; /* Ensure full height */
 }
 
 .panel--section3 {
@@ -236,12 +239,13 @@ a {
 .rsvp-card {
   width: min(640px, 95vw);
   margin-right: clamp(1rem, 6vw, 4rem);
-  background: rgba(255,255,255,0.95);
+  background: #f4db8a; /* New background color */
   border-radius: 1.5rem;
   padding: clamp(2rem, 4vw, 3rem);
   box-shadow: 0 25px 60px -35px rgba(0, 0, 0, 0.45);
-  max-height: 80vh;
-  overflow-y: auto;
+  font-family: 'Questrial', sans-serif; /* Apply font to card */
+  max-height: 80vh; /* Restore max-height */
+  overflow-y: auto; /* Restore inner scroll */
 }
 
 .panel--section3 .panel-inner {
@@ -305,7 +309,7 @@ a {
   width: 100%;
   height: auto;
   object-fit: contain;
-  max-width: 300px; /* Prevent them from getting too huge */
+  max-width: 450px; /* Increased size */
   filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
   transition: filter 250ms ease;
 }
@@ -329,9 +333,53 @@ a {
 
 
 
-.panel--visual .panel-inner {
+.visual-layer {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Animation triggers for all sections with visual layers */
+.panel.is-active .visual-layer {
+  animation: fadeInUp 1000ms ease forwards;
+}
+
+/* Staggered delays and slower speeds for specific sections */
+
+/* Section 1 */
+.panel--section1.is-active .visual-layer {
+  animation-duration: 2000ms;
+}
+.panel--section1.is-active .visual-layer:nth-child(2) { animation-delay: 800ms; }
+.panel--section1.is-active .visual-layer:nth-child(3) { animation-delay: 1600ms; }
+.panel--section1.is-active .visual-layer:nth-child(4) { animation-delay: 2400ms; }
+
+/* Section 4 */
+.panel--section4.is-active .visual-layer {
+  animation-duration: 2000ms;
+}
+.panel--section4.is-active .visual-layer:nth-child(2) { animation-delay: 800ms; }
+.panel--section4.is-active .visual-layer:nth-child(3) { animation-delay: 1600ms; }
+.panel--section4.is-active .visual-layer:nth-child(4) { animation-delay: 2400ms; }
+
+/* Section 5 */
+.panel--section5.is-active .visual-layer {
+  animation-duration: 2000ms;
+}
+
+/* Section 6 */
+.panel--section6.is-active .visual-layer {
+  animation-duration: 2000ms;
+}
+
+/* Section 7 - Ensure countdown is visible/animated too if needed */
+.countdown-wrapper {
+  position: relative;
+  z-index: 2;
 }
 
 .panel--celebration .panel-inner {
@@ -538,6 +586,16 @@ a {
   display: grid;
   gap: 1.5rem;
   text-align: left;
+  font-family: 'Questrial', sans-serif;
+}
+
+.rsvp-form input,
+.rsvp-form textarea,
+.rsvp-form button,
+.rsvp-form select,
+.rsvp-form label,
+.rsvp-form legend {
+  font-family: 'Questrial', sans-serif;
 }
 
 .form-group,

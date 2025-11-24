@@ -137,7 +137,11 @@ export function initNavController(options = {}) {
   }
 
   btnPrev?.addEventListener('click', () => goTo(currentIndex - 1));
-  btnNext?.addEventListener('click', () => goTo(currentIndex + 1));
+  
+  const nextButtons = document.querySelectorAll('[data-nav-next]');
+  nextButtons.forEach(btn => {
+    btn.addEventListener('click', () => goTo(currentIndex + 1));
+  });
 
   main.addEventListener('wheel', throttledWheel, { passive: false });
   main.addEventListener('touchstart', handleTouchStart, { passive: false });
