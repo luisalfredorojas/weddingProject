@@ -13,9 +13,15 @@ async function bootstrap() {
     initialIndex: Math.max(0, panelCount - 1),
     autoRedirect: {
       targetIndex: 0,
-      delay: 3500
+      delay: 2000
     }
   });
+  
+  // Mark app as ready to reveal panels
+  requestAnimationFrame(() => {
+    document.body.classList.add('is-ready');
+  });
+  
   void nav;
 
   try {
