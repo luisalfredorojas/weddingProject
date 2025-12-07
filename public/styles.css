@@ -415,7 +415,7 @@ a {
   display: none;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .panel-inner {
     width: 94%;
     text-align: left;
@@ -429,6 +429,10 @@ a {
 
   .panel--section2 .panel-inner {
     align-content: flex-start;
+  }
+
+  .panel--section2 {
+    background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
   }
 
   .panel--section3 .panel-inner {
@@ -492,6 +496,70 @@ a {
   .panel--section5 {
     background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
   }
+
+  /* Section 6 Mobile Updates */
+  .panel--section6 {
+    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
+  }
+
+  /* Section 7 Mobile Updates */
+  .panel--section7 {
+    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
+    place-items: start center;
+  }
+
+  .panel--section7 .visual-layer {
+    display: none;
+  }
+
+  .panel--section7 .panel-inner {
+    align-content: flex-start;
+    padding-top: 5rem;
+  }
+
+  .panel--section7 .countdown-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .panel--section7 .countdown-divider {
+    display: none;
+  }
+  .rsvp-card {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0;
+    margin-top: 12vh;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .rsvp-form {
+    gap: 0.25rem;
+  }
+
+  .form-group, fieldset {
+    gap: 0.25rem;
+  }
+
+  .rsvp-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .rsvp-card .panel-description {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  input, textarea, select, .btn-primary {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .form-group--songs {
+    display: grid;
+  }
 }
 
 @media (max-width: 600px) {
@@ -502,11 +570,6 @@ a {
   .panel-inner {
     width: 100%;
     max-height: calc(100svh - clamp(2rem, 12vh, 4rem));
-  }
-
-  .rsvp-card {
-    width: 100%;
-    padding: clamp(1.25rem, 6vw, 1.75rem);
   }
 
   .countdown-grid {
@@ -1114,8 +1177,160 @@ textarea:focus-visible {
     background: transparent;
   }
 
-  /* Ensure the image covers the area */
+/* Mobile Backgrounds and Overrides */
+@media (max-width: 768px) {
+  .panel-inner {
+    width: 94%;
+    text-align: left;
+    align-content: flex-start;
+    justify-items: flex-start;
+  }
+
+  .panel--section .panel-inner {
+    text-align: left;
+  }
+
+  .panel--section2 .panel-inner {
+    align-content: flex-start;
+  }
+
+  .panel--section2 {
+    background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
+  }
+
+  .panel--section3 .panel-inner {
+    justify-items: stretch;
+  }
+
+  .panel--celebration .panel-inner {
+    text-align: left;
+    justify-items: flex-start;
+  }
+
+  /* Section 3 Mobile Updates */
+  .panel--section3 {
+    background-image: url('assets/Mobile_Section3_Detalles Fondo.png');
+    padding-inline: 0 !important;
+  }
+
+  .panel--section3 .panel-inner {
+    max-height: none;
+    overflow-y: visible;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panel--section3 .info-overlays {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 15vh;
+    padding-bottom: 2rem;
+  }
+
+  .panel--section3 .info-overlay {
+    flex: 1;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    padding: 0;
+  }
+
   .panel--section3 .info-overlay img {
-    object-fit: cover;
+    max-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    filter: none;
+  }
+
+  /* Section 5 Mobile Updates */
+  .panel--section5 {
+    background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
+  }
+
+  /* Section 6 Mobile Updates */
+  .panel--section6 {
+    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
+  }
+
+  /* Section 7 Mobile Updates */
+  .panel--section7 {
+    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
+    place-items: start center;
+  }
+
+  .panel--section7 .visual-layer {
+    display: none;
+  }
+
+  .panel--section7 .panel-inner {
+    align-content: flex-start;
+    padding-top: 5rem;
+  }
+
+  .panel--section7 .countdown-divider {
+    display: none;
+  }
+
+  .rsvp-card {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0;
+    margin-top: 12vh;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .rsvp-form {
+    gap: 1rem;
+  }
+
+  .form-group, fieldset {
+    gap: 0.25rem;
+  }
+
+  .rsvp-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .rsvp-card .panel-description {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  input, textarea, select, .btn-primary {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .form-group--songs {
+    display: grid;
+  }
+}
+
+@media (max-width: 600px) {
+  .panel {
+    padding-inline: clamp(0.5rem, 4vw, 1rem);
+  }
+
+  .panel-inner {
+    width: 100%;
+    max-height: calc(100svh - clamp(2rem, 12vh, 4rem));
+  }
+
+  .countdown-grid {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
