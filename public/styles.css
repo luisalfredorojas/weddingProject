@@ -1027,4 +1027,34 @@ textarea:focus-visible {
   .panel--section7 {
     background-image: url('assets/Mobile_Section7_Timer Fondo.png');
   }
+
+  /* Section 3 Single Screen Layout */
+  .panel--section3 .panel-inner {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .panel--section3 .info-overlays {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .panel--section3 .info-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: transparent;
+  }
+
+  /* Ensure the image covers the area */
+  .panel--section3 .info-overlay img {
+    object-fit: cover;
+  }
 }
