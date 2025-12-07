@@ -998,3 +998,28 @@ textarea:focus-visible {
   white-space: nowrap;
   border: 0;
 }
+
+/* Mobile Backgrounds */
+@media (max-width: 768px) {
+  .panel--section1 {
+    background-image: url('assets/Mobile_Section1_Inicio Fondo.png');
+  }
+  .panel--section2 {
+    background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
+  }
+  .panel--section3 {
+    background-image: url('assets/Mobile_Section3_Detalles Fondo.png');
+  }
+  .panel--section4 {
+    background-image: url('assets/Mobile_Section4_Crono fondo.png');
+  }
+  .panel--section5 {
+    background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
+  }
+  .panel--section6 {
+    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
+  }
+  .panel--section7 {
+    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
+  }
+}
