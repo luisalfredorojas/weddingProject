@@ -173,10 +173,13 @@ a {
 }
 
 .panel--section2 .panel-inner {
-  justify-items: flex-end;
+  justify-items: flex-start; /* Left align */
   align-content: center;
-  padding-block: clamp(3rem, 6vw, 5rem);
+  padding-block: 0; /* Remove padding to let card fit */
   text-shadow: none;
+  max-height: none; /* Disable generic panel scroll */
+  overflow-y: visible; /* Disable generic panel scroll */
+  height: 100%; /* Ensure full height */
 }
 
 .panel--section3 {
@@ -236,12 +239,13 @@ a {
 .rsvp-card {
   width: min(640px, 95vw);
   margin-right: clamp(1rem, 6vw, 4rem);
-  background: rgba(255,255,255,0.95);
+  background: #f4db8a; /* New background color */
   border-radius: 1.5rem;
   padding: clamp(2rem, 4vw, 3rem);
   box-shadow: 0 25px 60px -35px rgba(0, 0, 0, 0.45);
-  max-height: 80vh;
-  overflow-y: auto;
+  font-family: 'Questrial', sans-serif; /* Apply font to card */
+  max-height: 80vh; /* Restore max-height */
+  overflow-y: auto; /* Restore inner scroll */
 }
 
 .panel--section3 .panel-inner {
@@ -255,52 +259,132 @@ a {
 }
 
 .info-overlays {
-  width: min(1000px, 90vw);
-  min-height: clamp(260px, 45vh, 420px);
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: center;
+  justify-items: center;
 }
 
 .info-overlay {
   border: none;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 1rem;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
-  position: relative;
-  color: transparent;
-  transition: background 250ms ease, transform 250ms ease, border 250ms ease;
-  border: 2px solid transparent;
+  transition: transform 250ms ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  opacity: 0; /* Hidden by default for animation */
 }
 
-.info-overlay .overlay-label {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 250ms ease;
+.panel--section3.is-active .info-overlay {
+  animation: fadeInUp 1000ms ease forwards;
+}
+
+.panel--section3.is-active .info-overlay:nth-child(2) {
+  animation-delay: 300ms;
+}
+
+.panel--section3.is-active .info-overlay:nth-child(3) {
+  animation-delay: 600ms;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-overlay img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-width: 450px; /* Increased size */
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+  transition: filter 250ms ease;
 }
 
 .info-overlay:hover,
 .info-overlay:focus-visible {
-  border-color: rgba(255,255,255,0.7);
-  background: rgba(0, 0, 0, 0.35);
-  transform: translateY(-4px);
+  /* We use !important or specific selector to ensure hover transform overrides animation final state if needed, 
+     but usually transform from animation fills. 
+     Actually, filling mode might conflict with hover transform. 
+     Let's use a wrapper or ensure hover works after animation.
+     The simple way: apply animation to the button, but hover transform also applies to button.
+     If animation ends at translateY(0), hover can do translateY(-6px).
+  */
+  transform: translateY(-6px);
 }
 
-.info-overlay:hover .overlay-label,
-.info-overlay:focus-visible .overlay-label {
-  opacity: 1;
+.info-overlay:hover img,
+.info-overlay:focus-visible img {
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
 }
 
-.panel--visual .panel-inner {
+
+
+.visual-layer {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.visual-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Animation triggers for all sections with visual layers */
+.panel.is-active .visual-layer {
+  animation: fadeInUp 1000ms ease forwards;
+}
+
+/* Staggered delays and slower speeds for specific sections */
+
+/* Section 1 */
+.panel--section1.is-active .visual-layer {
+  animation-duration: 2000ms;
+}
+.panel--section1.is-active .visual-layer:nth-child(2) { animation-delay: 800ms; }
+.panel--section1.is-active .visual-layer:nth-child(3) { animation-delay: 1600ms; }
+.panel--section1.is-active .visual-layer:nth-child(4) { animation-delay: 2400ms; }
+
+/* Section 4 */
+.panel--section4.is-active .visual-layer {
+  animation-duration: 2000ms;
+}
+.panel--section4.is-active .visual-layer:nth-child(2) { animation-delay: 800ms; }
+.panel--section4.is-active .visual-layer:nth-child(3) { animation-delay: 1600ms; }
+.panel--section4.is-active .visual-layer:nth-child(4) { animation-delay: 2400ms; }
+
+/* Section 5 */
+.panel--section5.is-active .visual-layer {
+  animation-duration: 2000ms;
+}
+
+/* Section 6 */
+.panel--section6.is-active .visual-layer {
+  animation-duration: 2000ms;
+}
+
+/* Section 7 - Ensure countdown is visible/animated too if needed */
+.countdown-wrapper {
+  position: relative;
+  z-index: 2;
 }
 
 .panel--celebration .panel-inner {
@@ -321,6 +405,14 @@ a {
     grid-template-columns: 1fr;
     min-height: auto;
   }
+
+  .mobile-only {
+    display: block !important;
+  }
+}
+
+.mobile-only {
+  display: none;
 }
 
 @media (max-width: 720px) {
@@ -346,6 +438,59 @@ a {
   .panel--celebration .panel-inner {
     text-align: left;
     justify-items: flex-start;
+  }
+
+  /* Section 3 Mobile Updates */
+  /* Section 3 Mobile Updates */
+  .panel--section3 {
+    background-image: url('assets/Mobile_Section3_Detalles Fondo.png');
+    padding-inline: 0 !important; /* Override global panel padding */
+  }
+
+  .panel--section3 .panel-inner {
+    max-height: none;
+    overflow-y: visible;
+    height: 100%;
+    width: 100%; /* Full width */
+    max-width: 100%; /* Full width */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panel--section3 .info-overlays {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center; /* Center content vertically */
+    gap: 0; /* Remove gap if images should touch, or keep small if desired. User said "pegadas al borde" (edges), not necessarily to each other, but let's reduce gap too just in case or keep it if they are distinct cards. The reference image shows them distinct but maybe touching edges of screen. Let's keep gap 0 for now or small? The reference image shows some space between them. I will keep gap but ensure they touch screen edges. */
+    gap: 1rem; 
+    padding-top: 15vh; /* Space for "Detalles" title in background */
+    padding-bottom: 2rem;
+  }
+
+  .panel--section3 .info-overlay {
+    flex: 1;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1; /* Ensure visible */
+    padding: 0; /* Ensure no padding on button */
+  }
+
+  .panel--section3 .info-overlay img {
+    max-height: 100%;
+    width: 100%; /* Full width */
+    max-width: 100%; /* Full width */
+    object-fit: contain; /* Or cover? If they are full width banners, maybe cover? The user said "images are in correct position on mobile canvas", implying they are designed to fit. 'contain' is safer, but if they are full width, 'width: 100%' should do it. */
+    filter: none; 
+  }
+
+  /* Section 5 Mobile Updates */
+  .panel--section5 {
+    background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
   }
 }
 
@@ -507,6 +652,16 @@ a {
   display: grid;
   gap: 1.5rem;
   text-align: left;
+  font-family: 'Questrial', sans-serif;
+}
+
+.rsvp-form input,
+.rsvp-form textarea,
+.rsvp-form button,
+.rsvp-form select,
+.rsvp-form label,
+.rsvp-form legend {
+  font-family: 'Questrial', sans-serif;
 }
 
 .form-group,
@@ -908,4 +1063,59 @@ textarea:focus-visible {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Mobile Backgrounds */
+@media (max-width: 768px) {
+  .panel--section1 {
+    background-image: url('assets/Mobile_Section1_Inicio Fondo.png');
+  }
+  .panel--section2 {
+    background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
+  }
+  .panel--section3 {
+    background-image: url('assets/Mobile_Section3_Detalles Fondo.png');
+  }
+  .panel--section4 {
+    background-image: url('assets/Mobile_Section4_Crono fondo.png');
+  }
+  .panel--section5 {
+    background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
+  }
+  .panel--section6 {
+    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
+  }
+  .panel--section7 {
+    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
+  }
+
+  /* Section 3 Single Screen Layout */
+  .panel--section3 .panel-inner {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .panel--section3 .info-overlays {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .panel--section3 .info-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: transparent;
+  }
+
+  /* Ensure the image covers the area */
+  .panel--section3 .info-overlay img {
+    object-fit: cover;
+  }
 }
