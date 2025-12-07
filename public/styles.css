@@ -1292,7 +1292,7 @@ textarea:focus-visible {
   }
 
   .rsvp-form {
-    gap: 1rem;
+    gap: 0.6rem;
   }
 
   .form-group, fieldset {
@@ -1316,6 +1316,38 @@ textarea:focus-visible {
 
   .form-group--songs {
     display: grid;
+  }
+
+  /* Position header bottom-left on mobile */
+  .site-header {
+    top: auto;
+    bottom: 0;
+    padding: 1rem;
+  }
+
+  .lang-toggle {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  /* Reduce header container padding on mobile */
+  .header-inner {
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Hide header date on mobile */
+  .header-date {
+    display: none;
+  }
+
+  /* Hide nav arrows on mobile */
+  .nav-arrow {
+    display: none;
+  }
+
+  /* Hide nav progress dots on mobile */
+  .nav-progress {
+    display: none;
   }
 }
 
