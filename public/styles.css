@@ -1375,20 +1375,23 @@ textarea:focus-visible {
   /* Reposition nav arrows for mobile experience */
   .nav-arrow {
     display: grid;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.75);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+    right: 1rem; /* Aligned to right */
+    left: auto;
+    transform: none; /* Remove centering */
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    width: 2rem; /* Smaller size */
+    height: 2rem; /* Smaller size */
+    font-size: 0.75rem; /* Smaller icon */
   }
 
   .nav-arrow--up {
     top: auto;
-    bottom: 5.25rem;
+    bottom: 7rem; /* Adjusted for smaller size */
   }
 
   .nav-arrow--down {
-    bottom: 1.5rem;
+    bottom: 4.5rem; /* Adjusted for smaller size */
   }
 
   /* Hide nav progress dots on mobile */
