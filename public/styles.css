@@ -123,6 +123,8 @@ a {
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  touch-action: none; /* Prevent all touch gestures for Safari */
+  -webkit-overflow-scrolling: touch; /* Enable momentum scrolling for Safari */
 }
 
 .panel {
@@ -158,6 +160,7 @@ body:not(.is-ready) .panel:last-child {
   max-height: calc(100svh - clamp(2rem, 8vh, 4rem));
   overflow-y: auto;
   scrollbar-width: thin;
+  touch-action: auto; /* Allow scrolling within panels on Safari */
 
 }
 
@@ -257,6 +260,7 @@ body:not(.is-ready) .panel:last-child {
   font-family: 'Questrial', sans-serif; /* Apply font to card */
   max-height: 80vh; /* Restore max-height */
   overflow-y: auto; /* Restore inner scroll */
+  touch-action: auto; /* Allow scrolling within RSVP card on Safari */
 }
 
 .panel--section3 .panel-inner {

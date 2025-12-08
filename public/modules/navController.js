@@ -119,16 +119,23 @@ export function initNavController(options = {}) {
 
   function handleTouchMove(event) {
     if (touchStartY === null) return;
-    const currentY = event.touches[0].clientY;
-    const diff = touchStartY - currentY;
-    if (Math.abs(diff) < 50) return;
-    event.preventDefault();
-    if (diff > 0) {
-      goTo(currentIndex + 1);
-    } else {
-      goTo(currentIndex - 1);
+    // For Safari iOS, we need to call preventDefault early
+    // Only prevent if the touch is not on a scrollable element
+    const target = event.target;
+    const isScrollable = target.closest('.panel-inner, .rsvp-card, .typeahead-results, textarea, input');
+    
+    if (!isScrollable) {
+      const currentY = event.touches[0].clientY;
+      const diff = touchStartY - currentY;
+      if (Math.abs(diff) < 50) return;
+      event.preventDefault();
+      if (diff > 0) {
+        goTo(currentIndex + 1);
+      } else {
+        goTo(currentIndex - 1);
+      }
+      touchStartY = null;
     }
-    touchStartY = null;
   }
 
   function handleVisibility() {
@@ -145,10 +152,8 @@ export function initNavController(options = {}) {
   });
 
   main.addEventListener('wheel', throttledWheel, { passive: false });
-  if (!isMobileViewport) {
-    main.addEventListener('touchstart', handleTouchStart, { passive: false });
-    main.addEventListener('touchmove', handleTouchMove, { passive: false });
-  }
+  main.addEventListener('touchstart', handleTouchStart, { passive: true });
+  main.addEventListener('touchmove', handleTouchMove, { passive: false });
   document.addEventListener('keydown', handleKey);
   document.addEventListener('visibilitychange', handleVisibility);
   onLanguageChange(updateStatusText);
