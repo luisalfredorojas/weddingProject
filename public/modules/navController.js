@@ -15,6 +15,7 @@ export function initNavController(options = {}) {
   const totalPanels = panels.length;
   const initialIndex = clampIndex(options.initialIndex ?? 0, totalPanels);
   const autoRedirect = options.autoRedirect;
+  const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
 
   let currentIndex = initialIndex;
   let isAnimating = false;
@@ -144,8 +145,10 @@ export function initNavController(options = {}) {
   });
 
   main.addEventListener('wheel', throttledWheel, { passive: false });
-  main.addEventListener('touchstart', handleTouchStart, { passive: false });
-  main.addEventListener('touchmove', handleTouchMove, { passive: false });
+  if (!isMobileViewport) {
+    main.addEventListener('touchstart', handleTouchStart, { passive: false });
+    main.addEventListener('touchmove', handleTouchMove, { passive: false });
+  }
   document.addEventListener('keydown', handleKey);
   document.addEventListener('visibilitychange', handleVisibility);
   onLanguageChange(updateStatusText);
