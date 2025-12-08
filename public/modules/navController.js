@@ -114,28 +114,36 @@ export function initNavController(options = {}) {
 
   function handleTouchStart(event) {
     if (event.touches.length !== 1) return;
+    const target = event.target;
+    const isScrollable = target.closest('.panel-inner, .rsvp-card, .typeahead-results, textarea, input, select');
+    
+    // Don't track touch if on scrollable element
+    if (isScrollable) {
+      touchStartY = null;
+      return;
+    }
+    
     touchStartY = event.touches[0].clientY;
   }
 
   function handleTouchMove(event) {
+    // Safari iOS requires preventDefault to be called IMMEDIATELY
+    // We prevent first, then check if we should cancel the gesture
     if (touchStartY === null) return;
-    // For Safari iOS, we need to call preventDefault early
-    // Only prevent if the touch is not on a scrollable element
-    const target = event.target;
-    const isScrollable = target.closest('.panel-inner, .rsvp-card, .typeahead-results, textarea, input');
     
-    if (!isScrollable) {
-      const currentY = event.touches[0].clientY;
-      const diff = touchStartY - currentY;
-      if (Math.abs(diff) < 50) return;
-      event.preventDefault();
-      if (diff > 0) {
-        goTo(currentIndex + 1);
-      } else {
-        goTo(currentIndex - 1);
-      }
-      touchStartY = null;
+    event.preventDefault(); // Must be called unconditionally for Safari
+    
+    const currentY = event.touches[0].clientY;
+    const diff = touchStartY - currentY;
+    
+    if (Math.abs(diff) < 50) return;
+    
+    if (diff > 0) {
+      goTo(currentIndex + 1);
+    } else {
+      goTo(currentIndex - 1);
     }
+    touchStartY = null;
   }
 
   function handleVisibility() {
@@ -152,7 +160,7 @@ export function initNavController(options = {}) {
   });
 
   main.addEventListener('wheel', throttledWheel, { passive: false });
-  main.addEventListener('touchstart', handleTouchStart, { passive: true });
+  main.addEventListener('touchstart', handleTouchStart, { passive: false });
   main.addEventListener('touchmove', handleTouchMove, { passive: false });
   document.addEventListener('keydown', handleKey);
   document.addEventListener('visibilitychange', handleVisibility);
