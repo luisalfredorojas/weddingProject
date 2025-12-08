@@ -557,8 +557,8 @@ body:not(.is-ready) .panel:last-child {
     width: 100%;
     padding: 0.5rem;
     margin: 0;
-    margin-top: 12vh; /* Adjusted for real mobile viewport */
-    max-height: 82vh; /* Adjusted to maintain bottom border visibility */
+    margin-top: 9vh; /* Aligned with red line below RSVP title */
+    max-height: 85vh; /* Increased to maintain bottom border visibility */
     overflow-y: auto; /* Allow scroll if content is too tall */
   }
 
