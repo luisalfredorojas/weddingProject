@@ -443,7 +443,7 @@ body:not(.is-ready) .panel:last-child {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .panel-inner {
     width: 94%;
     text-align: left;
@@ -1174,7 +1174,7 @@ textarea:focus-visible {
 }
 
 /* Mobile Backgrounds */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .panel--section1 {
     background-image: url('assets/Mobile_Section1_Inicio Fondo.png');
   }
@@ -1223,7 +1223,7 @@ textarea:focus-visible {
   }
 
 /* Mobile Backgrounds and Overrides */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .panel-inner {
     width: 94%;
     text-align: left;

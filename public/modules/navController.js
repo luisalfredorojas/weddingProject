@@ -15,7 +15,7 @@ export function initNavController(options = {}) {
   const totalPanels = panels.length;
   const initialIndex = clampIndex(options.initialIndex ?? 0, totalPanels);
   const autoRedirect = options.autoRedirect;
-  const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+  const isMobileViewport = window.matchMedia('(max-width: 1024px)').matches;
 
   let currentIndex = initialIndex;
   let isAnimating = false;
