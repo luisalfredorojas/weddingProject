@@ -947,57 +947,43 @@ textarea:focus-visible {
 
 .nav-arrow {
   position: fixed;
-  right: clamp(1rem, 3vw, 2rem);
-  background: rgba(0, 0, 0, 0.65);
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.6);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  width: 2rem; /* Smaller like mobile */
+  height: 2rem; /* Smaller like mobile */
+  font-size: 0.75rem; /* Smaller icon */
   display: grid;
   place-items: center;
   cursor: pointer;
   z-index: 8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .nav-arrow--up {
-  top: 25%;
+  bottom: 7rem; /* Bottom-right like mobile */
 }
 
 .nav-arrow--down {
-  bottom: 25%;
+  bottom: 4.5rem; /* Bottom-right like mobile */
 }
 
 .nav-progress {
-  position: fixed;
-  right: clamp(1rem, 3vw, 2rem);
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  padding: 0.75rem;
-  border-radius: 999px;
-  z-index: 8;
-  display: grid;
-  justify-items: center;
+  display: none; /* Hidden on all devices */
 }
 
 .progress-dots {
-  display: grid;
-  gap: 0.4rem;
+  display: none;
 }
 
 .progress-dot {
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  transition: transform 200ms ease, background-color 200ms ease;
+  display: none;
 }
 
 .progress-dot.is-active {
-  background: #fff;
-  transform: scale(1.2);
+  display: none;
 }
 
 .toast-region {
@@ -1372,32 +1358,7 @@ textarea:focus-visible {
     display: none;
   }
 
-  /* Reposition nav arrows for mobile experience */
-  .nav-arrow {
-    display: grid;
-    right: 1rem; /* Aligned to right */
-    left: auto;
-    transform: none; /* Remove centering */
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    width: 2rem; /* Smaller size */
-    height: 2rem; /* Smaller size */
-    font-size: 0.75rem; /* Smaller icon */
-  }
-
-  .nav-arrow--up {
-    top: auto;
-    bottom: 7rem; /* Adjusted for smaller size */
-  }
-
-  .nav-arrow--down {
-    bottom: 4.5rem; /* Adjusted for smaller size */
-  }
-
-  /* Hide nav progress dots on mobile */
-  .nav-progress {
-    display: none;
-  }
+  /* Mobile-specific adjustments (if needed in future) */
 }
 
 @media (max-width: 600px) {
