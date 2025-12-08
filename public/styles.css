@@ -758,9 +758,15 @@ body:not(.is-ready) .panel:last-child {
 
 .rsvp-form {
   display: grid;
-  gap: 1.5rem;
   text-align: left;
   font-family: 'Questrial', sans-serif;
+}
+
+/* Desktop: larger gap */
+@media (min-width: 1025px) {
+  .rsvp-form {
+    gap: 1.5rem;
+  }
 }
 
 .rsvp-form input,
@@ -775,7 +781,14 @@ body:not(.is-ready) .panel:last-child {
 .form-group,
 fieldset {
   display: grid;
-  gap: 0.75rem;
+}
+
+/* Desktop: larger gap for form groups */
+@media (min-width: 1025px) {
+  .form-group,
+  fieldset {
+    gap: 0.75rem;
+  }
 }
 
 .typeahead-wrapper {
@@ -1335,41 +1348,7 @@ textarea:focus-visible {
     align-items: center; /* Ensure items are centered */
   }
 
-  .rsvp-card {
-    width: 100%;
-    padding: 0.75rem;
-    margin: 0;
-    margin-top: 12vh;
-    max-height: none;
-    overflow-y: visible;
-  }
 
-  .rsvp-form {
-    gap: 0.3rem;
-  }
-
-  .form-group, fieldset {
-    gap: 0.25rem;
-  }
-
-  .rsvp-card h2 {
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .rsvp-card .panel-description {
-    font-size: 0.85rem;
-    margin-bottom: 0.25rem;
-  }
-
-  input, textarea, select, .btn-primary {
-    padding: 0.4rem 0.6rem;
-    font-size: 1rem;
-  }
-
-  .form-group--songs {
-    display: grid;
-  }
 
   /* Position header bottom-left on mobile */
   .site-header {
