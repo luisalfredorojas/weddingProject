@@ -555,11 +555,11 @@ body:not(.is-ready) .panel:last-child {
   }
   .rsvp-card {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.5rem;
     margin: 0;
-    margin-top: 12vh;
-    max-height: none;
-    overflow-y: visible;
+    margin-top: 8vh; /* Reduced from 12vh to fit better */
+    max-height: 82vh; /* Ensure bottom border is visible */
+    overflow-y: auto; /* Allow scroll if content is too tall */
   }
 
   .rsvp-form {
@@ -572,12 +572,13 @@ body:not(.is-ready) .panel:last-child {
 
   .rsvp-card h2 {
     font-size: 1.1rem;
-    margin-bottom: 0.25rem;
+    margin-top: 0;
+    margin-bottom: 0.15rem;
   }
 
   .rsvp-card .panel-description {
     font-size: 0.85rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.15rem;
   }
 
   input, textarea, select, .btn-primary {
@@ -587,6 +588,22 @@ body:not(.is-ready) .panel:last-child {
 
   .form-group--songs {
     display: grid;
+  }
+  
+  /* Additional spacing reduction for labels and hints */
+  .rsvp-form label,
+  .rsvp-form legend {
+    margin-bottom: 0.1rem;
+  }
+  
+  .field-hint {
+    margin-top: 0.1rem;
+    font-size: 0.8rem;
+  }
+  
+  .privacy-copy {
+    margin-top: 0.3rem;
+    font-size: 0.75rem;
   }
 }
 
