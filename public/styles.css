@@ -1359,9 +1359,23 @@ textarea:focus-visible {
     display: none;
   }
 
-  /* Hide nav arrows on mobile */
+  /* Reposition nav arrows for mobile experience */
   .nav-arrow {
-    display: none;
+    display: grid;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  }
+
+  .nav-arrow--up {
+    top: auto;
+    bottom: 5.25rem;
+  }
+
+  .nav-arrow--down {
+    bottom: 1.5rem;
   }
 
   /* Hide nav progress dots on mobile */
