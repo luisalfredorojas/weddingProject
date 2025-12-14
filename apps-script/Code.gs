@@ -1,5 +1,19 @@
 const SHEET_NAME = 'RSVPs';
 
+function doGet(e) {
+  const props = PropertiesService.getScriptProperties();
+  const allowedOrigin = props.getProperty('ALLOWED_ORIGIN') || '*';
+  
+  const response = ContentService.createTextOutput();
+  response.setMimeType(ContentService.MimeType.JSON);
+  
+  return withCors(response, allowedOrigin, { 
+    ok: true, 
+    message: 'RSVP endpoint is active. Use POST to submit data.',
+    timestamp: new Date().toISOString()
+  });
+}
+
 function doPost(e) {
   const props = PropertiesService.getScriptProperties();
   const allowedOrigin = props.getProperty('ALLOWED_ORIGIN') || '*';
