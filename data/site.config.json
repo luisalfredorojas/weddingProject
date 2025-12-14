@@ -1,0 +1,15 @@
+{
+  "eventTitle": "Luis & Maria Emilia · Nuestra boda",
+  "eventDateIso": "2026-06-20T17:00:00-05:00",
+
+  "venueName": "Hacienda Los Sueños",
+  "canonicalUrl": "https://example.com",
+  "appsScriptEndpoint": "https://script.google.com/macros/s/AKfycbzI9I9wTjw0ehDGIasBmfn1zblpPRASCAx07B1HnkK1szAk1OrJYwr8cvXXZhINaDuz/exec",
+  "sendCalendlyEmail": true,
+  "calendlyBaseUrl": "https://calendly.com/usuario/boda-luis-maria-emilia",
+  "social": {
+    "instagram": "https://instagram.com/usuario",
+    "hashtag": "#LuisYMariaEmilia2026"
+
+  }
+}

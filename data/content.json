@@ -1,0 +1,24 @@
+{
+  "modals": {
+    "itinerary": {
+      "title": "Itinerario del día",
+      "body": "<ul><li><strong>16:30</strong> — Recepción de invitados</li><li><strong>17:00</strong> — Ceremonia simbólica en los jardines</li><li><strong>18:30</strong> — Cóctel y fotos</li><li><strong>20:00</strong> — Cena y brindis</li><li><strong>22:00</strong> — Baile y celebración</li></ul>"
+    },
+    "location": {
+      "title": "Ubicación y estacionamiento",
+      "body": "<p><strong>Hacienda Los Sueños</strong><br>Camino del Lago 123, Valle de Bravo, Estado de México.</p><iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.478846469461!2d-99.6324890238395!3d19.43455744184624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2010f8f1b2b4f%3A0x3ed8ba1234567890!2sValle%20de%20Bravo!5e0!3m2!1ses!2smx!4v0000000000!5m2!1ses!2smx\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe><p>Estacionamiento y valet gratuitos disponibles. Sugerimos llegar 30 minutos antes.</p>"
+    },
+    "dresscode": {
+      "title": "Código de vestimenta",
+      "body": "<p>Vestimenta formal de gala en tonos cálidos y neutrales. Sugerimos vestidos largos, trajes oscuros o guayaberas formales.</p><ul><li>Evita el color blanco.</li><li>Trae un abrigo ligero para la noche.</li><li>Zapatos cómodos para césped.</li></ul>"
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "body": "<ul><li><strong>¿Puedo llevar acompañante?</strong> Consulta tu invitación, ahí indicamos el número de lugares asignados.</li><li><strong>¿Hay transporte?</strong> Contaremos con transporte redondo saliendo de Polanco a las 15:30 hrs. Confírmanos si lo requieres.</li><li><strong>¿Niños?</strong> Amamos a los pequeños, pero esta vez será un evento solo para adultos.</li></ul>"
+    },
+    "gifts": {
+      "title": "Regalos y lista de deseos",
+      "body": "<p>Tu presencia es nuestro mejor regalo. Si deseas apoyarnos, hemos preparado algunas opciones:</p><ul><li><a href=\"https://www.amazon.com.mx/hz/wishlist/ls/XXXXXXXX\" target=\"_blank\" rel=\"noopener\">Lista de Amazon</a></li><li>Fondo para luna de miel (datos bancarios disponibles bajo solicitud).</li><li>Mesa de regalos Liverpool: Código 123456.</li></ul>"
+    }
+  }
+}

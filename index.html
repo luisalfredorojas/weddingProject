@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es" data-current-lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¡Nos Casamos!</title>
+  <meta name="description" content="Acompáñanos para celebrar nuestro amor el 20/06/2026." />
+  <link rel="icon" href="assets/iconoBoda.png" />
+  <meta property="og:title" content="¡Nos Casamos!" />
+  <meta property="og:description" content="Celebra con nosotros el 20/06/2026." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://luisalfredorojas.github.io/weddingProject/" />
+  <meta property="og:image" content="assets/og-image.jpg" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="¡Nos Casamos!" />
+  <meta property="twitter:description" content="Celebra con nosotros el 20/06/2026." />
+  <meta property="twitter:image" content="assets/og-image.jpg" />
+  <link rel="canonical" href="https://example.com" />
+  <link rel="preload" href="styles.css?v=3" as="style" />
+  <link rel="stylesheet" href="styles.css?v=3" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Luis & Maria Emilia · Nuestra Boda",
+    "startDate": "2026-06-20T17:00:00-05:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "<!-- TODO: Nombre del lugar -->Hacienda Los Sueños",
+      "address": "<!-- TODO: Dirección completa -->"
+    },
+    "image": [
+      "https://example.com/assets/og-image.jpg"
+    ],
+    "description": "Celebración de boda de Luis y Maria Emilia.",
+    "organizer": {
+      "@type": "Person",
+      "name": "Luis & Maria Emilia"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a href="#section-1" class="skip-link" data-i18n="skipToContent">Saltar al contenido</a>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <button type="button" class="lang-toggle" data-i18n="langToggle" aria-label="Cambiar o alternar el idioma">ES / EN</button>
+      <p class="header-date" data-dynamic="eventDate">20/06/2026</p>
+    </div>
+  </header>
+  <main id="main" class="main" role="main" aria-live="polite">
+    <div class="nav-progress" role="status" aria-live="polite" aria-atomic="true">
+      <span class="visually-hidden" data-progress-status>Sección 1 de 4</span>
+      <div class="progress-dots" data-progress-dots aria-hidden="true"></div>
+    </div>
+    <button class="nav-arrow nav-arrow--up" type="button" aria-label="Sección anterior" data-nav-prev>
+      <span aria-hidden="true">▲</span>
+    </button>
+    <button class="nav-arrow nav-arrow--down" type="button" aria-label="Siguiente sección" data-nav-next>
+      <span aria-hidden="true">▼</span>
+    </button>
+    <section id="section-1" class="panel panel--section panel--intro panel--section1" data-panel-index="0" aria-label="Sección inicial">
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/Mobile_section1-Monograma.png">
+        <img src="assets/section1-monograma.png" alt="" loading="eager" />
+      </picture>
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/MOBILE_section1-NOMBRES.png">
+        <img src="assets/section1-nombres.png" alt="" loading="eager" />
+      </picture>
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/Mobile_section1-frase.png">
+        <img src="assets/section1-frase.png" alt="" loading="eager" />
+      </picture>
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/Mobile_section1-boton.png">
+        <img src="assets/section1-boton.png" alt="" loading="eager" />
+      </picture>
+      <div class="panel-inner" aria-hidden="true"></div>
+    </section>
+    <section id="section-2" class="panel panel--section panel--section2" data-panel-index="1" aria-labelledby="rsvp-title">
+      <div class="panel-inner">
+        <div class="rsvp-card">
+          <h2 id="rsvp-title" data-i18n="rsvpTitle">Confirma tu asistencia</h2>
+          <p class="panel-description" data-i18n="rsvpSubtitle">Encuentra tu nombre en la lista y envía tu respuesta.</p>
+          <form id="rsvp-form" class="rsvp-form" novalidate>
+          <div class="form-group" data-typeahead>
+            <label for="invitee-name" data-i18n="fieldNameLabel">Nombre y apellido</label>
+            <div class="typeahead-wrapper">
+              <input type="text" id="invitee-name" name="name" autocomplete="off" inputmode="text" required aria-describedby="name-hint" />
+              <ul class="typeahead-results" role="listbox" aria-label="Resultados" hidden></ul>
+            </div>
+            <p id="name-hint" class="field-hint" data-i18n="fieldNameHint">Escribe para buscar tu invitación.</p>
+            <p class="field-error" data-error-for="name" hidden></p>
+            <div class="sr-status" aria-live="polite" aria-atomic="true"></div>
+          </div>
+          <div class="form-group">
+            <label for="allergies" data-i18n="fieldAllergiesLabel">Alergias o requerimientos especiales</label>
+            <textarea id="allergies" name="allergies" maxlength="200" rows="4" aria-describedby="allergies-count"></textarea>
+            <div class="field-meta">
+              <span id="allergies-count" data-i18n="fieldAllergiesCounter" data-count="0">0 / 200</span>
+            </div>
+            <p class="field-error" data-error-for="allergies" hidden></p>
+          </div>
+          <div class="form-group form-group--songs">
+            <label for="songs-input" data-i18n="fieldSongsLabel">¡Recomiéndanos canciones!</label>
+            <div class="tag-input" data-song-field>
+              <div class="tag-input__chips" data-song-chips></div>
+              <input
+                type="text"
+                id="songs-input"
+                class="tag-input__entry"
+                data-song-entry
+                data-i18n="fieldSongsPlaceholder"
+                placeholder="Escribe una canción y presiona enter"
+                autocomplete="off"
+                aria-describedby="songs-hint"
+              />
+              <input type="hidden" name="songs" data-song-hidden />
+            </div>
+            <p id="songs-hint" class="field-hint" data-i18n="fieldSongsHint">Separa cada canción con una coma. Presiona enter para guardarlas.</p>
+            <p class="field-error" data-error-for="songs" hidden></p>
+          </div>
+          <fieldset class="form-group" data-required-group>
+            <legend data-i18n="fieldAttendanceLabel">¿Contamos con tu confirmación?</legend>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="attendance" value="yes" required />
+                <span data-i18n="optionYes">Sí</span>
+              </label>
+              <label>
+                <input type="radio" name="attendance" value="no" required />
+                <span data-i18n="optionNo">No</span>
+              </label>
+            </div>
+            <p class="field-error" data-error-for="attendance" hidden></p>
+          </fieldset>
+          <button type="submit" class="btn-primary" data-i18n="submitLabel">Enviar respuesta</button>
+          <p class="privacy-copy" data-i18n="privacyCopy">Usaremos tus datos solo para coordinar la celebración.</p>
+          <div class="calendly-inline" data-calendly hidden>
+            <p data-i18n="calendlyPrompt">Agenda una llamada para coordinar detalles:</p>
+            <button type="button" class="btn-secondary" data-calendly-button data-i18n="calendlyButton">Abrir Calendly</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </section>
+    <section id="section-3" class="panel panel--section panel--section3" data-panel-index="2" aria-label="Detalles interactivos">
+      <div class="panel-inner">
+        <div class="info-overlays">
+          <button type="button" class="info-overlay" data-modal-trigger="dresscode" aria-label="Código de vestimenta">
+            <picture>
+              <source media="(max-width: 1024px)" srcset="assets/Mobile_section3-dresscode.png">
+              <img src="assets/dresscode.png" alt="Dresscode" loading="lazy" />
+            </picture>
+          </button>
+          <button type="button" class="info-overlay" data-modal-trigger="location" aria-label="Ubicación">
+            <picture>
+              <source media="(max-width: 1024px)" srcset="assets/Mobile_section3_ubicacion.png">
+              <img src="assets/ubicacion.png" alt="Ubicación" loading="lazy" />
+            </picture>
+          </button>
+          <button type="button" class="info-overlay" data-modal-trigger="faq" aria-label="Preguntas frecuentes">
+            <picture>
+              <source media="(max-width: 1024px)" srcset="assets/Mobile_section3_FAQ.png">
+              <img src="assets/faq.png" alt="FAQ" loading="lazy" />
+            </picture>
+          </button>
+        </div>
+      </div>
+    </section>
+    <section id="section-4" class="panel panel--section panel--visual panel--section4" data-panel-index="3" aria-label="Cronograma">
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/Mobile_section4-Ceremonia.png">
+        <img src="assets/section4-icon-ceremonia.png" alt="Ceremonia" loading="lazy" />
+      </picture>
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/Mobile_section4-Brindis.png">
+        <img src="assets/section4-icon-brindis.png" alt="Brindis" loading="lazy" />
+      </picture>
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/Mobile_section4-Cena.png">
+        <img src="assets/section4-icon-cena.png" alt="Cena" loading="lazy" />
+      </picture>
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/Mobile_section4-Fiestita.png">
+        <img src="assets/section4-icon-fiestita.png" alt="Fiesta" loading="lazy" />
+      </picture>
+      <div class="panel-inner"></div>
+    </section>
+    <section id="section-5" class="panel panel--section panel--visual panel--section5" data-panel-index="4" aria-label="Regalo">
+      <img src="assets/Mobile_section5-texto.png" class="visual-layer mobile-only" alt="Texto regalo" loading="lazy" />
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/Mobile_section5-Pascal.png">
+        <img src="assets/section5-icon-regalo.png" alt="Regalo" loading="lazy" />
+      </picture>
+      <div class="panel-inner"></div>
+    </section>
+    <section id="section-6" class="panel panel--section panel--visual panel--section6" data-panel-index="5" aria-label="Cierre">
+      <picture class="visual-layer">
+        <source media="(max-width: 1024px)" srcset="assets/mobile_section6-cierre%20texto.png">
+        <img src="assets/section6-frase.png" alt="Frase cierre" loading="lazy" />
+      </picture>
+      <div class="panel-inner"></div>
+    </section>
+    <section id="section-7" class="panel panel--section panel--celebration panel--section7" data-panel-index="6" aria-labelledby="thanks-title">
+      <img src="assets/section7-etiqueta.png" class="visual-layer" alt="" loading="lazy" />
+      <div class="panel-inner">
+        <div class="countdown-wrapper">
+          <h2 id="thanks-title" data-i18n="thanksTitle">¡Gracias por celebrar con nosotros!</h2>
+          <p class="panel-description" data-i18n="redirectMessage">Mantente atento, en segundos te llevaremos al inicio para que recorras cada sección.</p>
+          <div class="countdown" data-countdown role="status" aria-live="polite">
+            <p class="countdown-label" data-i18n="countdownLead">Faltan</p>
+            <div class="countdown-grid" aria-live="off">
+              <div class="countdown-segment">
+                <span class="countdown-number" data-countdown-days>000</span>
+                <span class="countdown-unit" data-i18n="countdownDays">Días</span>
+              </div>
+              <span class="countdown-divider" aria-hidden="true">:</span>
+              <div class="countdown-segment">
+                <span class="countdown-number" data-countdown-hours>00</span>
+                <span class="countdown-unit" data-i18n="countdownHours">Horas</span>
+              </div>
+              <span class="countdown-divider" aria-hidden="true">:</span>
+              <div class="countdown-segment">
+                <span class="countdown-number" data-countdown-minutes>00</span>
+                <span class="countdown-unit" data-i18n="countdownMinutes">Minutos</span>
+              </div>
+              <span class="countdown-divider" aria-hidden="true">:</span>
+              <div class="countdown-segment">
+                <span class="countdown-number" data-countdown-seconds>00</span>
+                <span class="countdown-unit" data-i18n="countdownSeconds">Segundos</span>
+              </div>
+            </div>
+            <p class="countdown-caption" data-i18n="countdownCaption">Para nuestro gran día</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
+  <template id="modal-template">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-backdrop" data-modal-close></div>
+      <div class="modal-content" role="document">
+        <header class="modal-header">
+          <h3 id="modal-title"></h3>
+          <button type="button" class="modal-close" aria-label="Cerrar" data-modal-close>&times;</button>
+        </header>
+        <div class="modal-body"></div>
+        <footer class="modal-footer">
+          <button type="button" class="btn-secondary" data-modal-close data-i18n="modalClose">Cerrar</button>
+        </footer>
+      </div>
+    </div>
+  </template>
+  <script type="module" src="app.js" defer></script>
+</body>
+</html>
