@@ -21,6 +21,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+  
+  <!-- Preload LCP Images -->
+  <link rel="preload" href="assets/optimized/section1.webp" as="image" media="(min-width: 1025px)">
+  <link rel="preload" href="assets/optimized/Mobile_Section1_Inicio Fondo.webp" as="image" media="(max-width: 1024px)">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -66,20 +70,20 @@
     </button>
     <section id="section-1" class="panel panel--section panel--intro panel--section1" data-panel-index="0" aria-label="Sección inicial">
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/Mobile_section1-Monograma.png">
-        <img src="assets/section1-monograma.png" alt="" loading="eager" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section1-Monograma.webp">
+        <img src="assets/optimized/section1-monograma.webp" alt="" loading="eager" fetchpriority="high" />
       </picture>
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/MOBILE_section1-NOMBRES.png">
-        <img src="assets/section1-nombres.png" alt="" loading="eager" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/MOBILE_section1-NOMBRES.webp">
+        <img src="assets/optimized/section1-nombres.webp" alt="" loading="eager" fetchpriority="high" />
       </picture>
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/Mobile_section1-frase.png">
-        <img src="assets/section1-frase.png" alt="" loading="eager" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section1-frase.webp">
+        <img src="assets/optimized/section1-frase.webp" alt="" loading="eager" fetchpriority="high" />
       </picture>
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/Mobile_section1-boton.png">
-        <img src="assets/section1-boton.png" alt="" loading="eager" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section1-boton.webp">
+        <img src="assets/optimized/section1-boton.webp" alt="" loading="eager" fetchpriority="high" />
       </picture>
       <div class="panel-inner" aria-hidden="true"></div>
     </section>
@@ -155,20 +159,20 @@
         <div class="info-overlays">
           <button type="button" class="info-overlay" data-modal-trigger="dresscode" aria-label="Código de vestimenta">
             <picture>
-              <source media="(max-width: 1024px)" srcset="assets/Mobile_section3-dresscode.png">
-              <img src="assets/dresscode.png" alt="Dresscode" loading="lazy" />
+              <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section3-dresscode.webp">
+              <img src="assets/optimized/dresscode.webp" alt="Dresscode" loading="lazy" />
             </picture>
           </button>
           <button type="button" class="info-overlay" data-modal-trigger="location" aria-label="Ubicación">
             <picture>
-              <source media="(max-width: 1024px)" srcset="assets/Mobile_section3_ubicacion.png">
-              <img src="assets/ubicacion.png" alt="Ubicación" loading="lazy" />
+              <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section3_ubicacion.webp">
+              <img src="assets/optimized/ubicacion.webp" alt="Ubicación" loading="lazy" />
             </picture>
           </button>
           <button type="button" class="info-overlay" data-modal-trigger="faq" aria-label="Preguntas frecuentes">
             <picture>
-              <source media="(max-width: 1024px)" srcset="assets/Mobile_section3_FAQ.png">
-              <img src="assets/faq.png" alt="FAQ" loading="lazy" />
+              <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section3_FAQ.webp">
+              <img src="assets/optimized/faq.webp" alt="FAQ" loading="lazy" />
             </picture>
           </button>
         </div>
@@ -176,40 +180,40 @@
     </section>
     <section id="section-4" class="panel panel--section panel--visual panel--section4" data-panel-index="3" aria-label="Cronograma">
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/Mobile_section4-Ceremonia.png">
-        <img src="assets/section4-icon-ceremonia.png" alt="Ceremonia" loading="lazy" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section4-Ceremonia.webp">
+        <img src="assets/optimized/section4-icon-ceremonia.webp" alt="Ceremonia" loading="lazy" />
       </picture>
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/Mobile_section4-Brindis.png">
-        <img src="assets/section4-icon-brindis.png" alt="Brindis" loading="lazy" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section4-Brindis.webp">
+        <img src="assets/optimized/section4-icon-brindis.webp" alt="Brindis" loading="lazy" />
       </picture>
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/Mobile_section4-Cena.png">
-        <img src="assets/section4-icon-cena.png" alt="Cena" loading="lazy" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section4-Cena.webp">
+        <img src="assets/optimized/section4-icon-cena.webp" alt="Cena" loading="lazy" />
       </picture>
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/Mobile_section4-Fiestita.png">
-        <img src="assets/section4-icon-fiestita.png" alt="Fiesta" loading="lazy" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section4-Fiestita.webp">
+        <img src="assets/optimized/section4-icon-fiestita.webp" alt="Fiesta" loading="lazy" />
       </picture>
       <div class="panel-inner"></div>
     </section>
     <section id="section-5" class="panel panel--section panel--visual panel--section5" data-panel-index="4" aria-label="Regalo">
-      <img src="assets/Mobile_section5-texto.png" class="visual-layer mobile-only" alt="Texto regalo" loading="lazy" />
+      <img src="assets/optimized/Mobile_section5-texto.webp" class="visual-layer mobile-only" alt="Texto regalo" loading="lazy" />
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/Mobile_section5-Pascal.png">
-        <img src="assets/section5-icon-regalo.png" alt="Regalo" loading="lazy" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/Mobile_section5-Pascal.webp">
+        <img src="assets/optimized/section5-icon-regalo.webp" alt="Regalo" loading="lazy" />
       </picture>
       <div class="panel-inner"></div>
     </section>
     <section id="section-6" class="panel panel--section panel--visual panel--section6" data-panel-index="5" aria-label="Cierre">
       <picture class="visual-layer">
-        <source media="(max-width: 1024px)" srcset="assets/mobile_section6-cierre%20texto.png">
-        <img src="assets/section6-frase.png" alt="Frase cierre" loading="lazy" />
+        <source media="(max-width: 1024px)" srcset="assets/optimized/mobile_section6-cierre%20texto.webp">
+        <img src="assets/optimized/section6-frase.webp" alt="Frase cierre" loading="lazy" />
       </picture>
       <div class="panel-inner"></div>
     </section>
     <section id="section-7" class="panel panel--section panel--celebration panel--section7" data-panel-index="6" aria-labelledby="thanks-title">
-      <img src="assets/section7-etiqueta.png" class="visual-layer" alt="" loading="lazy" />
+      <img src="assets/optimized/section7-etiqueta.webp" class="visual-layer" alt="" loading="lazy" />
       <div class="panel-inner">
         <div class="countdown-wrapper">
           <h2 id="thanks-title" data-i18n="thanksTitle">¡Gracias por celebrar con nosotros!</h2>

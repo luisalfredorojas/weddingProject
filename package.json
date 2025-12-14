@@ -1,0 +1,16 @@
+{
+  "name": "wedding-project",
+  "version": "1.0.0",
+  "description": "Wedding website with optimized images",
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.js",
+    "dev": "python -m http.server 8080"
+  },
+  "devDependencies": {
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^8.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "sharp": "^0.33.1"
+  }
+}

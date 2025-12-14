@@ -191,11 +191,11 @@ body:not(.is-ready) .panel:last-child {
 }
 
 .panel--section1 {
-  background-image: url('assets/section1.png');
+  background-image: url('assets/optimized/section1.webp');
 }
 
 .panel--section2 {
-  background-image: url('assets/section2.png');
+  background-image: url('assets/optimized/section2.webp');
   color: var(--text-900);
 }
 
@@ -210,23 +210,23 @@ body:not(.is-ready) .panel:last-child {
 }
 
 .panel--section3 {
-  background-image: url('assets/section3.png');
+  background-image: url('assets/optimized/section3.webp');
 }
 
 .panel--section4 {
-  background-image: url('assets/section4.png');
+  background-image: url('assets/optimized/section4.webp');
 }
 
 .panel--section5 {
-  background-image: url('assets/section5.png');
+  background-image: url('assets/optimized/section5.webp');
 }
 
 .panel--section6 {
-  background-image: url('assets/section6.png');
+  background-image: url('assets/optimized/section6.webp');
 }
 
 .panel--section7 {
-  background-image: url('assets/section7.png');
+  background-image: url('assets/optimized/section7.webp');
 }
 
 .panel--intro .panel-inner {
@@ -1175,25 +1175,25 @@ textarea:focus-visible {
 /* Mobile Backgrounds */
 @media (max-width: 1024px) {
   .panel--section1 {
-    background-image: url('assets/Mobile_Section1_Inicio Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section1_Inicio Fondo.webp');
   }
   .panel--section2 {
-    background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section2_RSVP Fondo.webp');
   }
   .panel--section3 {
-    background-image: url('assets/Mobile_Section3_Detalles Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section3_Detalles Fondo.webp');
   }
   .panel--section4 {
-    background-image: url('assets/Mobile_Section4_Crono fondo.png');
+    background-image: url('assets/optimized/Mobile_Section4_Crono fondo.webp');
   }
   .panel--section5 {
-    background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section5_Regalo Fondo.webp');
   }
   .panel--section6 {
-    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section6_Cierre Fondo.webp');
   }
   .panel--section7 {
-    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section7_Timer Fondo.webp');
   }
 
   /* Section 3 Single Screen Layout */
@@ -1239,7 +1239,7 @@ textarea:focus-visible {
   }
 
   .panel--section2 {
-    background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section2_RSVP Fondo.webp');
   }
 
   .panel--section3 .panel-inner {
@@ -1253,7 +1253,7 @@ textarea:focus-visible {
 
   /* Section 3 Mobile Updates */
   .panel--section3 {
-    background-image: url('assets/Mobile_Section3_Detalles Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section3_Detalles Fondo.webp');
     padding-inline: 0 !important;
   }
 
@@ -1299,17 +1299,17 @@ textarea:focus-visible {
 
   /* Section 5 Mobile Updates */
   .panel--section5 {
-    background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section5_Regalo Fondo.webp');
   }
 
   /* Section 6 Mobile Updates */
   .panel--section6 {
-    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section6_Cierre Fondo.webp');
   }
 
   /* Section 7 Mobile Updates */
   .panel--section7 {
-    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section7_Timer Fondo.webp');
     place-items: start center;
   }
 
