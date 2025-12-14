@@ -39,55 +39,31 @@ async function flushQueue() {
   saveQueue(remaining);
 }
 
-function sendRSVP(payload) {
+async function sendRSVP(payload) {
   if (!config.appsScriptEndpoint) {
     throw new Error('Apps Script endpoint missing');
   }
   
-  return new Promise((resolve, reject) => {
-    // Crear iframe invisible
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    
-    // Escuchar mensaje del iframe
-    const messageHandler = function(event) {
-      // Aceptar mensajes de cualquier origen de Google
-      if (!event.origin.includes('script.google.com') && 
-          !event.origin.includes('googleusercontent.com')) {
-        return;
-      }
-      
-      window.removeEventListener('message', messageHandler);
-      document.body.removeChild(iframe);
-      
-      const data = event.data;
-      if (data.ok) {
-        resolve(data);
-      } else {
-        reject(new Error(data.error || 'Unknown error'));
-      }
-    };
-    
-    window.addEventListener('message', messageHandler);
-    
-    // Timeout después de 10 segundos
-    setTimeout(() => {
-      window.removeEventListener('message', messageHandler);
-      if (document.body.contains(iframe)) {
-        document.body.removeChild(iframe);
-      }
-      reject(new Error('Timeout'));
-    }, 10000);
-    
-    // Crear URL con parámetros
-    const url = new URL(config.appsScriptEndpoint);
-    url.searchParams.set('method', 'submit');
-    url.searchParams.set('data', JSON.stringify(payload));
-    
-    // Cargar iframe
-    iframe.src = url.toString();
-    document.body.appendChild(iframe);
+  const response = await fetch(config.appsScriptEndpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+    mode: 'cors'
   });
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  const data = await response.json();
+  
+  if (!data.ok) {
+    throw new Error(data.error || 'Unknown error from server');
+  }
+  
+  return data;
 }
 
 function setError(field, message) {
