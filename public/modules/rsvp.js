@@ -39,29 +39,47 @@ async function flushQueue() {
   saveQueue(remaining);
 }
 
-async function sendRSVP(payload) {
+function sendRSVP(payload) {
   if (!config.appsScriptEndpoint) {
     throw new Error('Apps Script endpoint missing');
   }
   
-  // Usar GET con query parameters para evitar CORS preflight
-  const url = new URL(config.appsScriptEndpoint);
-  url.searchParams.set('method', 'post');
-  url.searchParams.set('data', JSON.stringify(payload));
-  
-  const response = await fetch(url.toString(), {
-    method: 'GET',
-    mode: 'cors'
+  return new Promise((resolve, reject) => {
+    // Crear callback único
+    const callbackName = 'jsonpCallback_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    
+    // Registrar callback global
+    window[callbackName] = function(data) {
+      // Cleanup
+      delete window[callbackName];
+      document.body.removeChild(script);
+      
+      // Resolver promesa
+      if (data.ok) {
+        resolve(data);
+      } else {
+        reject(new Error(data.error || 'Unknown error'));
+      }
+    };
+    
+    // Crear URL con parámetros JSONP
+    const url = new URL(config.appsScriptEndpoint);
+    url.searchParams.set('method', 'post');
+    url.searchParams.set('data', JSON.stringify(payload));
+    url.searchParams.set('callback', callbackName);
+    
+    // Crear script tag
+    const script = document.createElement('script');
+    script.src = url.toString();
+    script.onerror = function() {
+      delete window[callbackName];
+      document.body.removeChild(script);
+      reject(new Error('Network error'));
+    };
+    
+    // Agregar al DOM para ejecutar
+    document.body.appendChild(script);
   });
-  
-  if (!response.ok) {
-    throw new Error('Network response not ok');
-  }
-  const data = await response.json();
-  if (!data.ok) {
-    throw new Error('Apps Script returned error');
-  }
-  return data;
 }
 
 function setError(field, message) {
