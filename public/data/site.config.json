@@ -3,9 +3,11 @@
   "eventDateIso": "2026-06-20T17:00:00-05:00",
 
   "venueName": "Hacienda Los Sueños",
-  "canonicalUrl": "https://example.com",
-  "appsScriptEndpoint": "https://script.google.com/macros/s/AKfycbyXXTgY7OsQYavyYXXpmyR1_le60MOybu7YJC89EF3TzQxActAzrLM9gEsx_JWXcej0/exec",
-  "sendCalendlyEmail": true,
+  "canonicalUrl": "https://nuestroidilio.com",
+  
+  "supabaseUrl": "https://xudghwhnhslfvcskgept.supabase.co",
+  "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1ZGdod2huaHNsZnZjc2tnZXB0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3NDMxNTQsImV4cCI6MjA4MTMxOTE1NH0.FvPrb8ua-iQBe2Oi8QAFeZvblLsegfcJL1-_ZJCaHYw",
+  
   "calendlyBaseUrl": "https://calendly.com/usuario/boda-luis-maria-emilia",
   "social": {
     "instagram": "https://instagram.com/usuario",

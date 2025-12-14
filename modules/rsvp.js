@@ -27,7 +27,7 @@ function saveQueue(queue) {
 
 async function flushQueue() {
   const queue = getQueue();
-  if (!queue.length || !config.appsScriptEndpoint) return;
+  if (!queue.length) return;
   const remaining = [];
   for (const payload of queue) {
     try {
@@ -40,25 +40,20 @@ async function flushQueue() {
 }
 
 async function sendRSVP(payload) {
-  if (!config.appsScriptEndpoint) {
-    throw new Error('Apps Script endpoint missing');
-  }
-  const response = await fetch(config.appsScriptEndpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    mode: 'cors',
-    body: JSON.stringify(payload)
-  });
-  if (!response.ok) {
-    throw new Error('Network response not ok');
-  }
-  const data = await response.json();
-  if (!data.ok) {
-    throw new Error('Apps Script returned error');
-  }
-  return data;
+  // Import Supabase client dynamically to avoid circular dependencies
+  const { insertRSVP } = await import('./supabase.js');
+  
+  // Transform payload to match Supabase schema
+  const supabasePayload = {
+    name: payload.name,
+    allergies: payload.allergies || null,
+    attendance: payload.attendance,
+    songs: payload.songs || null,
+    submitted_at: payload.submittedAt,
+    user_agent: payload.userAgent
+  };
+  
+  return await insertRSVP(supabasePayload);
 }
 
 function setError(field, message) {
