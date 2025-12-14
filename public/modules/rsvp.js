@@ -27,7 +27,7 @@ function saveQueue(queue) {
 
 async function flushQueue() {
   const queue = getQueue();
-  if (!queue.length || !config.appsScriptEndpoint) return;
+  if (!queue.length) return;
   const remaining = [];
   for (const payload of queue) {
     try {
@@ -40,30 +40,20 @@ async function flushQueue() {
 }
 
 async function sendRSVP(payload) {
-  if (!config.appsScriptEndpoint) {
-    throw new Error('Apps Script endpoint missing');
-  }
+  // Import Supabase client dynamically to avoid circular dependencies
+  const { insertRSVP } = await import('./supabase.js');
   
-  const response = await fetch(config.appsScriptEndpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-    mode: 'cors'
-  });
+  // Transform payload to match Supabase schema
+  const supabasePayload = {
+    name: payload.name,
+    allergies: payload.allergies || null,
+    attendance: payload.attendance,
+    songs: payload.songs || null,
+    submitted_at: payload.submittedAt,
+    user_agent: payload.userAgent
+  };
   
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-  
-  const data = await response.json();
-  
-  if (!data.ok) {
-    throw new Error(data.error || 'Unknown error from server');
-  }
-  
-  return data;
+  return await insertRSVP(supabasePayload);
 }
 
 function setError(field, message) {
