@@ -43,14 +43,17 @@ async function sendRSVP(payload) {
   if (!config.appsScriptEndpoint) {
     throw new Error('Apps Script endpoint missing');
   }
-  const response = await fetch(config.appsScriptEndpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    mode: 'cors',
-    body: JSON.stringify(payload)
+  
+  // Usar GET con query parameters para evitar CORS preflight
+  const url = new URL(config.appsScriptEndpoint);
+  url.searchParams.set('method', 'post');
+  url.searchParams.set('data', JSON.stringify(payload));
+  
+  const response = await fetch(url.toString(), {
+    method: 'GET',
+    mode: 'cors'
   });
+  
   if (!response.ok) {
     throw new Error('Network response not ok');
   }
