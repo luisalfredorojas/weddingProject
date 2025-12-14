@@ -4,7 +4,7 @@
 
   "venueName": "Hacienda Los Sueños",
   "canonicalUrl": "https://example.com",
-  "appsScriptEndpoint": "https://script.google.com/macros/s/AKfycbzI9I9wTjw0ehDGIasBmfn1zblpPRASCAx07B1HnkK1szAk1OrJYwr8cvXXZhINaDuz/exec",
+  "appsScriptEndpoint": "https://script.google.com/macros/s/AKfycbywo4v3CZYoJBpWsswrwCl_7o4mxL_Hj4_hFzlj_QRICFIaOWc0pYERVfcUBKIxgYGx/exec",
   "sendCalendlyEmail": true,
   "calendlyBaseUrl": "https://calendly.com/usuario/boda-luis-maria-emilia",
   "social": {
