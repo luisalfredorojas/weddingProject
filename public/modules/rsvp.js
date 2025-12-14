@@ -45,16 +45,22 @@ function sendRSVP(payload) {
   }
   
   return new Promise((resolve, reject) => {
-    // Crear callback único
-    const callbackName = 'jsonpCallback_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    // Crear iframe invisible
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
     
-    // Registrar callback global
-    window[callbackName] = function(data) {
-      // Cleanup
-      delete window[callbackName];
-      document.body.removeChild(script);
+    // Escuchar mensaje del iframe
+    const messageHandler = function(event) {
+      // Aceptar mensajes de cualquier origen de Google
+      if (!event.origin.includes('script.google.com') && 
+          !event.origin.includes('googleusercontent.com')) {
+        return;
+      }
       
-      // Resolver promesa
+      window.removeEventListener('message', messageHandler);
+      document.body.removeChild(iframe);
+      
+      const data = event.data;
       if (data.ok) {
         resolve(data);
       } else {
@@ -62,23 +68,25 @@ function sendRSVP(payload) {
       }
     };
     
-    // Crear URL con parámetros JSONP
+    window.addEventListener('message', messageHandler);
+    
+    // Timeout después de 10 segundos
+    setTimeout(() => {
+      window.removeEventListener('message', messageHandler);
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+      reject(new Error('Timeout'));
+    }, 10000);
+    
+    // Crear URL con parámetros
     const url = new URL(config.appsScriptEndpoint);
-    url.searchParams.set('method', 'post');
+    url.searchParams.set('method', 'submit');
     url.searchParams.set('data', JSON.stringify(payload));
-    url.searchParams.set('callback', callbackName);
     
-    // Crear script tag
-    const script = document.createElement('script');
-    script.src = url.toString();
-    script.onerror = function() {
-      delete window[callbackName];
-      document.body.removeChild(script);
-      reject(new Error('Network error'));
-    };
-    
-    // Agregar al DOM para ejecutar
-    document.body.appendChild(script);
+    // Cargar iframe
+    iframe.src = url.toString();
+    document.body.appendChild(iframe);
   });
 }
 
