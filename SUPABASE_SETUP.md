@@ -70,9 +70,12 @@ Cuando accedas al dashboard de admin (`/admin.html`), necesitarás:
 
 1. **Password**: `wedding2026` (cambiar en `modules/admin.js` línea 8)
 2. **Service Role Key**: Se te pedirá al hacer login
-   ```
-   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1ZGdod2huaHNsZnZjc2tnZXB0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NTc0MzE1NCwiZXhwIjoyMDgxMzE5MTU0fQ.-LNhe-LUMmKxp_CRiduUEjbLd1r5DgY81LAHvN2wUs8
-   ```
+
+**Para obtener tu Service Role Key:**
+1. Ve a tu proyecto en Supabase: https://xudghwhnhslfvcskgept.supabase.co
+2. Settings → API → Project API keys
+3. Copia la **service_role** key (empieza con `eyJ...`)
+4. **NUNCA la compartas ni la subas a GitHub**
 
 ⚠️ **IMPORTANTE**: La Service Role Key es SÚPER SENSIBLE. Nunca la compartas públicamente ni la subas a GitHub.
 
