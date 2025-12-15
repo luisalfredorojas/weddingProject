@@ -10,11 +10,21 @@ async function bootstrap() {
 
   const panelCount = document.querySelectorAll('.panel').length;
   const nav = initNavController({
-    initialIndex: Math.max(0, panelCount - 1),
-    autoRedirect: {
-      targetIndex: 0,
-      delay: 2000
-    }
+    initialIndex: 0
+  });
+
+  // Lazy load backgrounds
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('load-bg');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '50% 0px' });
+
+  document.querySelectorAll('.panel').forEach(panel => {
+    observer.observe(panel);
   });
   
   // Mark app as ready to reveal panels

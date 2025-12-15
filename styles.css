@@ -151,12 +151,13 @@ a {
   padding: clamp(1rem, 4vw, 2rem) 0;
 }
 
-/* FOUC Fix: Hide all panels except the last one until JS is ready */
+/* FOUC Fix: Hide all panels except the first one until JS is ready */
 body:not(.is-ready) .panel {
   opacity: 0;
   pointer-events: none;
+  transition: none !important;
 }
-body:not(.is-ready) .panel:last-child {
+body:not(.is-ready) .panel:first-child {
   opacity: 1;
   pointer-events: auto;
   z-index: 10;
@@ -558,7 +559,7 @@ body:not(.is-ready) .panel:last-child {
     padding: 0.5rem;
     margin: 0;
     margin-top: 9vh; /* Aligned with red line below RSVP title */
-    max-height: 72vh; /* Limited height prevents extending to bottom */
+    max-height: 60vh; /* Limited height prevents extending to bottom */
     overflow-y: auto; /* Allow scroll if content is too tall */
   }
 
@@ -1319,7 +1320,7 @@ textarea:focus-visible {
 
   .panel--section7 .panel-inner {
     align-content: flex-start;
-    padding-top: 2rem;
+    padding-top: 1.2rem;
     text-align: center;
     justify-items: center;
   }

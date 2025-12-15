@@ -10,11 +10,7 @@ async function bootstrap() {
 
   const panelCount = document.querySelectorAll('.panel').length;
   const nav = initNavController({
-    initialIndex: Math.max(0, panelCount - 1),
-    autoRedirect: {
-      targetIndex: 0,
-      delay: 2000
-    }
+    initialIndex: 0,
   });
   
   // Mark app as ready to reveal panels

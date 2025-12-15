@@ -151,12 +151,13 @@ a {
   padding: clamp(1rem, 4vw, 2rem) 0;
 }
 
-/* FOUC Fix: Hide all panels except the last one until JS is ready */
+/* FOUC Fix: Hide all panels except the first one until JS is ready */
 body:not(.is-ready) .panel {
   opacity: 0;
   pointer-events: none;
+  transition: none !important;
 }
-body:not(.is-ready) .panel:last-child {
+body:not(.is-ready) .panel:first-child {
   opacity: 1;
   pointer-events: auto;
   z-index: 10;
@@ -195,8 +196,11 @@ body:not(.is-ready) .panel:last-child {
 }
 
 .panel--section2 {
-  background-image: url('assets/optimized/section2.webp');
   color: var(--text-900);
+}
+
+.panel--section2.load-bg {
+  background-image: url('assets/optimized/section2.webp');
 }
 
 .panel--section2 .panel-inner {
@@ -209,23 +213,23 @@ body:not(.is-ready) .panel:last-child {
   height: 100%; /* Ensure full height */
 }
 
-.panel--section3 {
+.panel--section3.load-bg {
   background-image: url('assets/optimized/section3.webp');
 }
 
-.panel--section4 {
+.panel--section4.load-bg {
   background-image: url('assets/optimized/section4.webp');
 }
 
-.panel--section5 {
+.panel--section5.load-bg {
   background-image: url('assets/optimized/section5.webp');
 }
 
-.panel--section6 {
+.panel--section6.load-bg {
   background-image: url('assets/optimized/section6.webp');
 }
 
-.panel--section7 {
+.panel--section7.load-bg {
   background-image: url('assets/optimized/section7.webp');
 }
 
@@ -459,7 +463,7 @@ body:not(.is-ready) .panel:last-child {
     align-content: flex-start;
   }
 
-  .panel--section2 {
+  .panel--section2.load-bg {
     background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
   }
 
@@ -474,7 +478,7 @@ body:not(.is-ready) .panel:last-child {
 
   /* Section 3 Mobile Updates */
   /* Section 3 Mobile Updates */
-  .panel--section3 {
+  .panel--section3.load-bg {
     background-image: url('assets/Mobile_Section3_Detalles Fondo.png');
     padding-inline: 0 !important; /* Override global panel padding */
   }
@@ -521,19 +525,22 @@ body:not(.is-ready) .panel:last-child {
   }
 
   /* Section 5 Mobile Updates */
-  .panel--section5 {
+  .panel--section5.load-bg {
     background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
   }
 
   /* Section 6 Mobile Updates */
-  .panel--section6 {
+  .panel--section6.load-bg {
     background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
   }
 
   /* Section 7 Mobile Updates */
   .panel--section7 {
-    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
     place-items: start center;
+  }
+
+  .panel--section7.load-bg {
+    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
   }
 
   .panel--section7 .visual-layer {
@@ -558,7 +565,7 @@ body:not(.is-ready) .panel:last-child {
     padding: 0.5rem;
     margin: 0;
     margin-top: 9vh; /* Aligned with red line below RSVP title */
-    max-height: 72vh; /* Limited height prevents extending to bottom */
+    max-height: 60vh; /* Limited height prevents extending to bottom */
     overflow-y: auto; /* Allow scroll if content is too tall */
   }
 
@@ -1177,22 +1184,22 @@ textarea:focus-visible {
   .panel--section1 {
     background-image: url('assets/optimized/Mobile_Section1_Inicio Fondo.webp');
   }
-  .panel--section2 {
+  .panel--section2.load-bg {
     background-image: url('assets/optimized/Mobile_Section2_RSVP Fondo.webp');
   }
-  .panel--section3 {
+  .panel--section3.load-bg {
     background-image: url('assets/optimized/Mobile_Section3_Detalles Fondo.webp');
   }
-  .panel--section4 {
+  .panel--section4.load-bg {
     background-image: url('assets/optimized/Mobile_Section4_Crono fondo.webp');
   }
-  .panel--section5 {
+  .panel--section5.load-bg {
     background-image: url('assets/optimized/Mobile_Section5_Regalo Fondo.webp');
   }
-  .panel--section6 {
+  .panel--section6.load-bg {
     background-image: url('assets/optimized/Mobile_Section6_Cierre Fondo.webp');
   }
-  .panel--section7 {
+  .panel--section7.load-bg {
     background-image: url('assets/optimized/Mobile_Section7_Timer Fondo.webp');
   }
 
@@ -1238,7 +1245,7 @@ textarea:focus-visible {
     align-content: flex-start;
   }
 
-  .panel--section2 {
+  .panel--section2.load-bg {
     background-image: url('assets/optimized/Mobile_Section2_RSVP Fondo.webp');
   }
 
@@ -1253,8 +1260,10 @@ textarea:focus-visible {
 
   /* Section 3 Mobile Updates */
   .panel--section3 {
-    background-image: url('assets/optimized/Mobile_Section3_Detalles Fondo.webp');
     padding-inline: 0 !important;
+  }
+  .panel--section3.load-bg {
+    background-image: url('assets/optimized/Mobile_Section3_Detalles Fondo.webp');
   }
 
   .panel--section3 .panel-inner {
@@ -1298,19 +1307,21 @@ textarea:focus-visible {
   }
 
   /* Section 5 Mobile Updates */
-  .panel--section5 {
+  .panel--section5.load-bg {
     background-image: url('assets/optimized/Mobile_Section5_Regalo Fondo.webp');
   }
 
   /* Section 6 Mobile Updates */
-  .panel--section6 {
+  .panel--section6.load-bg {
     background-image: url('assets/optimized/Mobile_Section6_Cierre Fondo.webp');
   }
 
   /* Section 7 Mobile Updates */
   .panel--section7 {
-    background-image: url('assets/optimized/Mobile_Section7_Timer Fondo.webp');
     place-items: start center;
+  }
+  .panel--section7.load-bg {
+    background-image: url('assets/optimized/Mobile_Section7_Timer Fondo.webp');
   }
 
   .panel--section7 .visual-layer {
@@ -1319,7 +1330,7 @@ textarea:focus-visible {
 
   .panel--section7 .panel-inner {
     align-content: flex-start;
-    padding-top: 2rem;
+    padding-top: 1.2rem;
     text-align: center;
     justify-items: center;
   }
