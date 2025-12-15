@@ -512,8 +512,11 @@ body:not(.is-ready) .panel:first-child {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 1;
+    opacity: 1 !important;
     padding: 0;
+    position: relative;
+    animation: none !important;
+    transform: none !important;
   }
 
   .panel--section3 .info-overlay img {
@@ -521,8 +524,6 @@ body:not(.is-ready) .panel:first-child {
     width: 100%;
     max-width: 100%;
     object-fit: contain;
-    filter: none; 
-
     filter: none; 
   }
 
