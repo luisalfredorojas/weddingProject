@@ -482,8 +482,8 @@ body:not(.is-ready) .panel:first-child {
 
   .panel--section3 .panel-inner {
     max-height: 100%;
-    overflow-y: auto;
-    height: auto;
+    overflow-y: hidden; /* Prevent scroll */
+    height: 100%;
     min-height: 100%;
     width: 100%;
     max-width: 100%;
@@ -501,13 +501,14 @@ body:not(.is-ready) .panel:first-child {
     display: flex !important;
     flex-direction: column !important;
     grid-template-columns: none !important;
-    height: 100vh !important; /* Force full height */
+    height: 100% !important; /* Fill parent, not viewport */
     min-height: auto;
     justify-content: center !important; /* Center content vertically */
     align-items: flex-start !important;
     gap: 0.5rem !important; /* Minimal gap */
     padding-top: 10vh; /* Reduced top padding */
     padding-bottom: 2rem; /* Reduced bottom padding */
+    box-sizing: border-box; /* Ensure padding is included in height */
   }
 
   .panel--section3 .info-overlay {
@@ -542,7 +543,7 @@ body:not(.is-ready) .panel:first-child {
 
   .panel--section3 .info-overlay img {
     height: auto;
-    max-height: 18vh; /* Reduced to ensure no scroll */
+    max-height: 20vh; /* Restored to reasonable size */
     width: auto;
     max-width: 100%;
     object-fit: contain;
