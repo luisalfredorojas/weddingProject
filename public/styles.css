@@ -497,30 +497,32 @@ body:not(.is-ready) .panel:first-child {
   .panel--section3 .info-overlays {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    justify-content: center; /* Center content vertically */
-    gap: 0; /* Remove gap if images should touch, or keep small if desired. User said "pegadas al borde" (edges), not necessarily to each other, but let's reduce gap too just in case or keep it if they are distinct cards. The reference image shows them distinct but maybe touching edges of screen. Let's keep gap 0 for now or small? The reference image shows some space between them. I will keep gap but ensure they touch screen edges. */
+    height: auto;
+    min-height: 100%;
+    justify-content: flex-start;
     gap: 1rem; 
-    padding-top: 15vh; /* Space for "Detalles" title in background */
-    padding-bottom: 2rem;
+    padding-top: 15vh;
+    padding-bottom: 4rem;
   }
 
   .panel--section3 .info-overlay {
-    flex: 1;
+    flex: 0 0 auto;
     height: auto;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 1; /* Ensure visible */
-    padding: 0; /* Ensure no padding on button */
+    opacity: 1;
+    padding: 0;
   }
 
   .panel--section3 .info-overlay img {
-    max-height: 100%;
-    width: 100%; /* Full width */
-    max-width: 100%; /* Full width */
-    object-fit: contain; /* Or cover? If they are full width banners, maybe cover? The user said "images are in correct position on mobile canvas", implying they are designed to fit. 'contain' is safer, but if they are full width, 'width: 100%' should do it. */
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    filter: none; 
+
     filter: none; 
   }
 
