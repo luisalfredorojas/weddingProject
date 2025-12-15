@@ -501,19 +501,19 @@ body:not(.is-ready) .panel:first-child {
     display: flex !important;
     flex-direction: column !important;
     grid-template-columns: none !important;
-    height: auto !important;
+    height: 100vh !important; /* Force full height */
     min-height: auto;
-    justify-content: flex-start !important;
-    align-items: flex-start !important; /* Allow items to size themselves */
-    gap: 1rem !important; /* Reduced gap to fit screen */
-    padding-top: 15vh;
-    padding-bottom: 4rem;
+    justify-content: center !important; /* Center content vertically */
+    align-items: flex-start !important;
+    gap: 0.5rem !important; /* Minimal gap */
+    padding-top: 10vh; /* Reduced top padding */
+    padding-bottom: 2rem; /* Reduced bottom padding */
   }
 
   .panel--section3 .info-overlay {
     flex: 0 0 auto;
     height: auto;
-    width: auto; /* Allow width to fit content */
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -542,7 +542,7 @@ body:not(.is-ready) .panel:first-child {
 
   .panel--section3 .info-overlay img {
     height: auto;
-    max-height: 20vh; /* Reduced height to fit screen */
+    max-height: 24vh; /* Increased size slightly */
     width: auto;
     max-width: 100%;
     object-fit: contain;
