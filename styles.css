@@ -542,7 +542,7 @@ body:not(.is-ready) .panel:first-child {
 
   .panel--section3 .info-overlay img {
     height: auto;
-    max-height: 24vh; /* Increased size slightly */
+    max-height: 18vh; /* Reduced to ensure no scroll */
     width: auto;
     max-width: 100%;
     object-fit: contain;
