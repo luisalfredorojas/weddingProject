@@ -504,8 +504,8 @@ body:not(.is-ready) .panel:first-child {
     height: auto !important;
     min-height: auto;
     justify-content: flex-start !important;
-    align-items: stretch !important;
-    gap: 2rem !important; 
+    align-items: flex-start !important; /* Allow items to size themselves */
+    gap: 1rem !important; /* Reduced gap to fit screen */
     padding-top: 15vh;
     padding-bottom: 4rem;
   }
@@ -513,7 +513,7 @@ body:not(.is-ready) .panel:first-child {
   .panel--section3 .info-overlay {
     flex: 0 0 auto;
     height: auto;
-    width: 100%;
+    width: auto; /* Allow width to fit content */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -524,9 +524,27 @@ body:not(.is-ready) .panel:first-child {
     transform: none !important;
   }
 
+  /* Alternating Alignment */
+  .panel--section3 .info-overlay:nth-child(1) {
+    align-self: flex-start;
+    margin-left: -1rem; /* Pull to left edge if needed, or just 0 */
+    margin-left: 0;
+  }
+
+  .panel--section3 .info-overlay:nth-child(2) {
+    align-self: flex-end;
+    margin-right: 0;
+  }
+
+  .panel--section3 .info-overlay:nth-child(3) {
+    align-self: flex-start;
+    margin-left: 0;
+  }
+
   .panel--section3 .info-overlay img {
     height: auto;
-    width: 100%;
+    max-height: 25vh; /* Reduced height to fit screen */
+    width: auto;
     max-width: 100%;
     object-fit: contain;
     filter: none; 
