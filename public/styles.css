@@ -529,23 +529,23 @@ body:not(.is-ready) .panel:first-child {
 
   /* Alternating Alignment */
   .panel--section3 .info-overlay:nth-child(1) {
-    align-self: flex-start;
-    margin-left: 0;
-  }
-
-  .panel--section3 .info-overlay:nth-child(2) {
-    align-self: flex-end;
+    align-self: flex-end; /* Right */
     margin-right: 0;
   }
 
-  .panel--section3 .info-overlay:nth-child(3) {
-    align-self: flex-start;
+  .panel--section3 .info-overlay:nth-child(2) {
+    align-self: flex-start; /* Left */
     margin-left: 0;
+  }
+
+  .panel--section3 .info-overlay:nth-child(3) {
+    align-self: flex-end; /* Right */
+    margin-right: 0;
   }
 
   .panel--section3 .info-overlay img {
     height: auto;
-    max-height: 25vh; /* Reduced height to fit screen */
+    max-height: 20vh; /* Reduced height to fit screen */
     width: auto;
     max-width: 100%;
     object-fit: contain;
