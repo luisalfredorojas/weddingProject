@@ -309,6 +309,8 @@ body:not(.is-ready) .panel:first-child {
   width: 100%;
   height: auto;
   opacity: 0; /* Hidden by default for animation */
+  text-decoration: none;
+  color: inherit;
 }
 
 .panel--section3.is-active .info-overlay {
@@ -1071,6 +1073,13 @@ textarea:focus-visible {
   display: grid;
   gap: 1rem;
   z-index: 1;
+  font-family: 'Questrial', sans-serif;
+}
+
+.modal-content strong,
+.modal-content b {
+  font-weight: 700;
+  text-shadow: 0 0 1px currentColor;
 }
 
 .modal-header {
@@ -1095,6 +1104,10 @@ textarea:focus-visible {
 
 .modal-body ul {
   padding-left: 1.2rem;
+}
+
+.modal-body li {
+  margin-bottom: 1rem;
 }
 
 .modal-body iframe {
