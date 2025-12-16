@@ -128,6 +128,25 @@ export async function initRSVP() {
   allergiesField?.addEventListener('input', () => updateAllergyCounter(allergiesField));
   updateAllergyCounter(allergiesField);
 
+  // Fix mobile keyboard scroll issue
+  // When keyboard closes, prevent unwanted scroll jump
+  const formInputs = form.querySelectorAll('input, textarea');
+  let scrollPosition = 0;
+  
+  formInputs.forEach(input => {
+    input.addEventListener('focus', () => {
+      // Save scroll position when input is focused
+      scrollPosition = window.scrollY;
+    });
+    
+    input.addEventListener('blur', () => {
+      // Prevent scroll jump after keyboard closes
+      setTimeout(() => {
+        window.scrollTo(0, scrollPosition);
+      }, 50);
+    });
+  });
+
   form.addEventListener('submit', async event => {
     event.preventDefault();
     resetErrors();
