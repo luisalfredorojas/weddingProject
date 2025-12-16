@@ -589,10 +589,10 @@ body:not(.is-ready) .panel:first-child {
   }
   .rsvp-card {
     width: 100%;
-    padding: 0.5rem;
+    padding: 1rem;
     margin: 0;
-    margin-top: 9vh; /* Aligned with red line below RSVP title */
-    max-height: 60vh; /* Limited height prevents extending to bottom */
+    margin-top: 15vh; /* Aligned with red line below RSVP title */
+    max-height: 100vh; /* Limited height prevents extending to bottom */
     overflow-y: auto; /* Allow scroll if content is too tall */
   }
 
