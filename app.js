@@ -4,6 +4,7 @@ import { initRSVP } from './modules/rsvp.js';
 import { initI18n } from './modules/i18n.js';
 import { fetchJSON } from './modules/utils.js';
 import { toast } from './modules/toast.js';
+import { initScrollAnimations } from './modules/scrollAnimations.js';
 
 async function bootstrap() {
   await initI18n();
@@ -19,6 +20,9 @@ async function bootstrap() {
   });
   
   void nav;
+
+  // Initialize scroll-based animations
+  initScrollAnimations();
 
   try {
     const content = await fetchJSON('data/content.json', { cacheKey: 'content' });
