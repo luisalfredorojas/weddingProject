@@ -170,24 +170,6 @@ export function initNavController(options = {}) {
   document.addEventListener('visibilitychange', handleVisibility);
   onLanguageChange(updateStatusText);
 
-  // Fix for mobile keyboard closing issue (Safari iOS and Chrome iOS)
-  // When keyboard closes, the viewport changes but panels don't reposition correctly
-  const formInputs = document.querySelectorAll('input, textarea, select');
-  formInputs.forEach(input => {
-    input.addEventListener('blur', () => {
-      // Small delay to let browser finish viewport adjustment
-      setTimeout(() => {
-        // Force panel repositioning
-        updatePositions();
-        // Ensure we're at the top of the document
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }, 100);
-    });
-  });
-
-
   panels.forEach(panel => {
     panel.setAttribute('tabindex', '-1');
   });
