@@ -525,20 +525,29 @@ body:not(.is-ready) .panel:first-child {
     opacity: 1 !important;
     padding: 0;
     position: relative;
-    /* Enable bounce animation on mobile */
-    animation: subtleBounce 2s ease-in-out infinite !important;
-    transform: none !important;
+    /* Enable more noticeable bounce animation on mobile */
+    animation: subtleBounce 1.2s ease-in-out infinite !important;
     cursor: pointer;
     transition: transform 0.2s ease, filter 0.2s ease;
   }
 
-  /* Subtle bounce animation */
+
+  /* Super obvious bounce animation for testing */
   @keyframes subtleBounce {
-    0%, 100% {
-      transform: translateY(0);
+    0% {
+      transform: translateY(0) scale(1) rotate(0deg) !important;
+    }
+    25% {
+      transform: translateY(-30px) scale(1.2) rotate(5deg) !important;
     }
     50% {
-      transform: translateY(-8px);
+      transform: translateY(0) scale(1) rotate(0deg) !important;
+    }
+    75% {
+      transform: translateY(-30px) scale(1.2) rotate(-5deg) !important;
+    }
+    100% {
+      transform: translateY(0) scale(1) rotate(0deg) !important;
     }
   }
 
@@ -576,11 +585,21 @@ body:not(.is-ready) .panel:first-child {
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
     transition: filter 0.3s ease;
+    /* Also apply animation directly to images */
+    animation: subtleBounce 1.2s ease-in-out infinite !important;
   }
 
   /* Enhanced shadow on touch */
   .panel--section3 .info-overlay:active img {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+  
+  /* FORCE animation even with reduce-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .panel--section3 .info-overlay,
+    .panel--section3 .info-overlay img {
+      animation: subtleBounce 1.2s ease-in-out infinite !important;
+    }
   }
 
   /* Section 5 Mobile Updates */
