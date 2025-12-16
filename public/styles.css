@@ -21,9 +21,9 @@
 }
 
 html {
-  overflow: hidden;
-  touch-action: none; /* Prevent touch gestures at document level */
-  -webkit-overflow-scrolling: auto;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -32,12 +32,12 @@ body {
   background: var(--bg-100);
   color: var(--text-900);
   min-height: 100vh;
-  overflow: hidden;
-  position: fixed; /* Critical for Safari iOS to prevent bounce scroll */
+  overflow-y: auto;
+  position: static;
   width: 100%;
-  height: 100vh;
-  touch-action: none; /* Prevent all touch gestures */
-  -webkit-overflow-scrolling: auto; /* Disable momentum scrolling */
+  height: auto;
+  touch-action: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 body.allow-scroll {
@@ -133,21 +133,23 @@ a {
 
 .main {
   position: relative;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   width: 100%;
-  overflow: hidden;
-  touch-action: none; /* Prevent all touch gestures for Safari */
-  -webkit-overflow-scrolling: touch; /* Enable momentum scrolling for Safari */
+  overflow-y: auto;
+  touch-action: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
 }
 
 .panel {
-  position: absolute;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100svh;
+  min-height: 100vh;
   display: grid;
   place-items: center;
-  transition: transform var(--transition-speed) ease-in-out;
+  transition: none;
   padding: clamp(1rem, 4vw, 2rem) 0;
 }
 
@@ -192,15 +194,12 @@ body:not(.is-ready) .panel:first-child {
 }
 
 .panel--section1 {
-  background-image: url('assets/optimized/section1.webp');
+  background-image: url('assets/section1.png');
 }
 
 .panel--section2 {
+  background-image: url('assets/section2.png');
   color: var(--text-900);
-}
-
-.panel--section2.load-bg {
-  background-image: url('assets/optimized/section2.webp');
 }
 
 .panel--section2 .panel-inner {
@@ -213,24 +212,24 @@ body:not(.is-ready) .panel:first-child {
   height: 100%; /* Ensure full height */
 }
 
-.panel--section3.load-bg {
-  background-image: url('assets/optimized/section3.webp');
+.panel--section3 {
+  background-image: url('assets/section3.png');
 }
 
-.panel--section4.load-bg {
-  background-image: url('assets/optimized/section4.webp');
+.panel--section4 {
+  background-image: url('assets/section4.png');
 }
 
-.panel--section5.load-bg {
-  background-image: url('assets/optimized/section5.webp');
+.panel--section5 {
+  background-image: url('assets/section5.png');
 }
 
-.panel--section6.load-bg {
-  background-image: url('assets/optimized/section6.webp');
+.panel--section6 {
+  background-image: url('assets/section6.png');
 }
 
-.panel--section7.load-bg {
-  background-image: url('assets/optimized/section7.webp');
+.panel--section7 {
+  background-image: url('assets/section7.png');
 }
 
 .panel--intro .panel-inner {
@@ -316,16 +315,16 @@ body:not(.is-ready) .panel:first-child {
   color: inherit;
 }
 
-.panel--section3.is-active .info-overlay {
-  animation: fadeInUp 1000ms ease forwards;
+.panel--section3.is-visible .info-overlay {
+  animation: fadeInUp 1800ms ease forwards;
 }
 
-.panel--section3.is-active .info-overlay:nth-child(2) {
-  animation-delay: 300ms;
+.panel--section3.is-visible .info-overlay:nth-child(2) {
+  animation-delay: 500ms;
 }
 
-.panel--section3.is-active .info-overlay:nth-child(3) {
-  animation-delay: 600ms;
+.panel--section3.is-visible .info-overlay:nth-child(3) {
+  animation-delay: 1000ms;
 }
 
 @keyframes fadeInUp {
@@ -383,36 +382,36 @@ body:not(.is-ready) .panel:first-child {
 }
 
 /* Animation triggers for all sections with visual layers */
-.panel.is-active .visual-layer {
-  animation: fadeInUp 1000ms ease forwards;
+.panel.is-visible .visual-layer {
+  animation: fadeInUp 1800ms ease forwards;
 }
 
 /* Staggered delays and slower speeds for specific sections */
 
 /* Section 1 */
-.panel--section1.is-active .visual-layer {
-  animation-duration: 2000ms;
+.panel--section1.is-visible .visual-layer {
+  animation-duration: 3500ms;
 }
-.panel--section1.is-active .visual-layer:nth-child(2) { animation-delay: 800ms; }
-.panel--section1.is-active .visual-layer:nth-child(3) { animation-delay: 1600ms; }
-.panel--section1.is-active .visual-layer:nth-child(4) { animation-delay: 2400ms; }
+.panel--section1.is-visible .visual-layer:nth-child(2) { animation-delay: 1000ms; }
+.panel--section1.is-visible .visual-layer:nth-child(3) { animation-delay: 2000ms; }
+.panel--section1.is-visible .visual-layer:nth-child(4) { animation-delay: 3000ms; }
 
 /* Section 4 */
-.panel--section4.is-active .visual-layer {
-  animation-duration: 2000ms;
+.panel--section4.is-visible .visual-layer {
+  animation-duration: 3500ms;
 }
-.panel--section4.is-active .visual-layer:nth-child(2) { animation-delay: 800ms; }
-.panel--section4.is-active .visual-layer:nth-child(3) { animation-delay: 1600ms; }
-.panel--section4.is-active .visual-layer:nth-child(4) { animation-delay: 2400ms; }
+.panel--section4.is-visible .visual-layer:nth-child(2) { animation-delay: 1000ms; }
+.panel--section4.is-visible .visual-layer:nth-child(3) { animation-delay: 2000ms; }
+.panel--section4.is-visible .visual-layer:nth-child(4) { animation-delay: 3000ms; }
 
 /* Section 5 */
-.panel--section5.is-active .visual-layer {
-  animation-duration: 2000ms;
+.panel--section5.is-visible .visual-layer {
+  animation-duration: 3500ms;
 }
 
 /* Section 6 */
-.panel--section6.is-active .visual-layer {
-  animation-duration: 2000ms;
+.panel--section6.is-visible .visual-layer {
+  animation-duration: 3500ms;
 }
 
 /* Section 7 - Ensure countdown is visible/animated too if needed */
@@ -465,7 +464,7 @@ body:not(.is-ready) .panel:first-child {
     align-content: flex-start;
   }
 
-  .panel--section2.load-bg {
+  .panel--section2 {
     background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
   }
 
@@ -480,7 +479,7 @@ body:not(.is-ready) .panel:first-child {
 
   /* Section 3 Mobile Updates */
   /* Section 3 Mobile Updates */
-  .panel--section3.load-bg {
+  .panel--section3 {
     background-image: url('assets/Mobile_Section3_Detalles Fondo.png');
     padding-inline: 0 !important; /* Override global panel padding */
   }
@@ -556,22 +555,19 @@ body:not(.is-ready) .panel:first-child {
   }
 
   /* Section 5 Mobile Updates */
-  .panel--section5.load-bg {
+  .panel--section5 {
     background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
   }
 
   /* Section 6 Mobile Updates */
-  .panel--section6.load-bg {
+  .panel--section6 {
     background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
   }
 
   /* Section 7 Mobile Updates */
   .panel--section7 {
-    place-items: start center;
-  }
-
-  .panel--section7.load-bg {
     background-image: url('assets/Mobile_Section7_Timer Fondo.png');
+    place-items: start center;
   }
 
   .panel--section7 .visual-layer {
@@ -990,10 +986,10 @@ textarea:focus-visible {
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 2rem; /* Smaller like mobile */
-  height: 2rem; /* Smaller like mobile */
-  font-size: 0.75rem; /* Smaller icon */
-  display: grid;
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.75rem;
+  display: none !important; /* Force hide */
   place-items: center;
   cursor: pointer;
   z-index: 8;
@@ -1224,27 +1220,27 @@ textarea:focus-visible {
 /* Mobile Backgrounds */
 @media (max-width: 1024px) {
   .panel--section1 {
-    background-image: url('assets/optimized/Mobile_Section1_Inicio Fondo.webp');
+    background-image: url('assets/Mobile_Section1_Inicio Fondo.png');
   }
-  .panel--section2.load-bg {
-    background-image: url('assets/optimized/Mobile_Section2_RSVP Fondo.webp');
+  .panel--section2 {
+    background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
   }
-  .panel--section3.load-bg {
-    background-image: url('assets/optimized/Mobile_Section3_Detalles Fondo.webp');
+  .panel--section3 {
+    background-image: url('assets/Mobile_Section3_Detalles Fondo.png');
   }
-  .panel--section4.load-bg {
-    background-image: url('assets/optimized/Mobile_Section4_Crono fondo.webp');
+  .panel--section4 {
+    background-image: url('assets/Mobile_Section4_Crono fondo.png');
   }
-  .panel--section5.load-bg {
-    background-image: url('assets/optimized/Mobile_Section5_Regalo Fondo.webp');
+  .panel--section5 {
+    background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
   }
-  .panel--section6.load-bg {
-    background-image: url('assets/optimized/Mobile_Section6_Cierre Fondo.webp');
+  .panel--section6 {
+    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
   }
-  .panel--section7.load-bg {
-    background-image: url('assets/optimized/Mobile_Section7_Timer Fondo.webp');
+  .panel--section7 {
+    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
   }
-
+}
 
 
 /* Mobile Backgrounds and Overrides */
@@ -1264,8 +1260,8 @@ textarea:focus-visible {
     align-content: flex-start;
   }
 
-  .panel--section2.load-bg {
-    background-image: url('assets/optimized/Mobile_Section2_RSVP Fondo.webp');
+  .panel--section2 {
+    background-image: url('assets/Mobile_Section2_RSVP Fondo.png');
   }
 
   .panel--section3 .panel-inner {
@@ -1280,21 +1276,19 @@ textarea:focus-visible {
 
 
   /* Section 5 Mobile Updates */
-  .panel--section5.load-bg {
-    background-image: url('assets/optimized/Mobile_Section5_Regalo Fondo.webp');
+  .panel--section5 {
+    background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
   }
 
   /* Section 6 Mobile Updates */
-  .panel--section6.load-bg {
-    background-image: url('assets/optimized/Mobile_Section6_Cierre Fondo.webp');
+  .panel--section6 {
+    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
   }
 
   /* Section 7 Mobile Updates */
   .panel--section7 {
+    background-image: url('assets/Mobile_Section7_Timer Fondo.png');
     place-items: start center;
-  }
-  .panel--section7.load-bg {
-    background-image: url('assets/optimized/Mobile_Section7_Timer Fondo.webp');
   }
 
   .panel--section7 .visual-layer {

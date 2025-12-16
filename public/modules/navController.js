@@ -44,6 +44,8 @@ export function initNavController(options = {}) {
     });
   }
   function updatePositions() {
+    // DISABLED: Let panels flow naturally instead of forced positioning
+    /*
     panels.forEach((panel, index) => {
       const offset = index - currentIndex;
       const translateY = offset * 100;
@@ -56,6 +58,7 @@ export function initNavController(options = {}) {
         panel.setAttribute('aria-hidden', 'true');
       }
     });
+    */
     dots.forEach((dot, index) => {
       dot.classList.toggle('is-active', index === currentIndex);
     });
@@ -159,10 +162,11 @@ export function initNavController(options = {}) {
     btn.addEventListener('click', () => goTo(currentIndex + 1));
   });
 
-  main.addEventListener('wheel', throttledWheel, { passive: false });
-  main.addEventListener('touchstart', handleTouchStart, { passive: false });
-  main.addEventListener('touchmove', handleTouchMove, { passive: false });
-  document.addEventListener('keydown', handleKey);
+  // DISABLED: Allow free scrolling instead of forced panel navigation
+  // main.addEventListener('wheel', throttledWheel, { passive: false });
+  // main.addEventListener('touchstart', handleTouchStart, { passive: false });
+  // main.addEventListener('touchmove', handleTouchMove, { passive: false });
+  // document.addEventListener('keydown', handleKey);
   document.addEventListener('visibilitychange', handleVisibility);
   onLanguageChange(updateStatusText);
 

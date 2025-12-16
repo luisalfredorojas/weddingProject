@@ -4,27 +4,14 @@ import { initRSVP } from './modules/rsvp.js';
 import { initI18n } from './modules/i18n.js';
 import { fetchJSON } from './modules/utils.js';
 import { toast } from './modules/toast.js';
+import { initScrollAnimations } from './modules/scrollAnimations.js';
 
 async function bootstrap() {
   await initI18n();
 
   const panelCount = document.querySelectorAll('.panel').length;
   const nav = initNavController({
-    initialIndex: 0
-  });
-
-  // Lazy load backgrounds
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('load-bg');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: '50% 0px' });
-
-  document.querySelectorAll('.panel').forEach(panel => {
-    observer.observe(panel);
+    initialIndex: 0,
   });
   
   // Mark app as ready to reveal panels
@@ -33,6 +20,9 @@ async function bootstrap() {
   });
   
   void nav;
+
+  // Initialize scroll-based animations
+  initScrollAnimations();
 
   try {
     const content = await fetchJSON('data/content.json', { cacheKey: 'content' });
