@@ -1235,7 +1235,7 @@ textarea:focus-visible {
     background-image: url('assets/Mobile_Section5_Regalo Fondo.png');
   }
   .panel--section6 {
-    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section6_CierreFondo.webp');
   }
   .panel--section7 {
     background-image: url('assets/Mobile_Section7_Timer Fondo.png');
@@ -1282,7 +1282,7 @@ textarea:focus-visible {
 
   /* Section 6 Mobile Updates */
   .panel--section6 {
-    background-image: url('assets/Mobile_Section6_Cierre Fondo.png');
+    background-image: url('assets/optimized/Mobile_Section6_CierreFondo.webp');
   }
 
   /* Section 7 Mobile Updates */
