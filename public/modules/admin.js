@@ -225,16 +225,17 @@ function renderTable() {
       ? '<span class="badge badge-yes">✅ Sí asiste</span>'
       : '<span class="badge badge-no">❌ No asiste</span>';
     
-    const allergies = rsvp.allergies || '<em style="color: var(--color-text-muted);">Sin alergias</em>';
-    const songs = rsvp.songs || '<em style="color: var(--color-text-muted);">Sin canciones</em>';
+    // Only escape HTML when there's actual data, otherwise use styled empty message
+    const allergiesText = rsvp.allergies ? escapeHtml(rsvp.allergies) : '<em style="color: var(--color-text-muted);">Sin alergias</em>';
+    const songsText = rsvp.songs ? escapeHtml(rsvp.songs) : '<em style="color: var(--color-text-muted);">Sin canciones</em>';
     
     return `
       <tr>
         <td>${formattedDate}</td>
         <td><strong>${escapeHtml(rsvp.name)}</strong></td>
         <td>${attendanceBadge}</td>
-        <td>${escapeHtml(allergies)}</td>
-        <td>${escapeHtml(songs)}</td>
+        <td>${allergiesText}</td>
+        <td>${songsText}</td>
       </tr>
     `;
   }).join('');

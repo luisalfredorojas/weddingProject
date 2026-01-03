@@ -1,6 +1,7 @@
 'use strict';
 
 import { fetchJSON, announce } from './utils.js';
+import { getConfirmedNames } from './supabase.js';
 
 const INVITEES_URL = 'data/invitees.json';
 
@@ -11,8 +12,24 @@ export async function initTypeahead(root) {
   const status = root.querySelector('.sr-status');
   if (!input || !list) return;
 
+  // Load all invitees from JSON
   const { invitees = [] } = await fetchJSON(INVITEES_URL, { cacheKey: 'invitees' });
-  let filtered = invitees;
+  
+  // Fetch confirmed names from Supabase to filter them out
+  let confirmedNames = [];
+  try {
+    confirmedNames = await getConfirmedNames();
+    console.log('Invitados confirmados:', confirmedNames.length);
+  } catch (error) {
+    console.warn('No se pudieron cargar invitados confirmados:', error);
+    // Continue without filtering if fetch fails
+  }
+  
+  // Filter out invitees who have already confirmed
+  const availableInvitees = invitees.filter(inv => !confirmedNames.includes(inv.name));
+  console.log('Invitados disponibles para confirmar:', availableInvitees.length, '/', invitees.length);
+  
+  let filtered = availableInvitees;
   let activeIndex = -1;
 
   function render() {
@@ -60,12 +77,12 @@ export async function initTypeahead(root) {
   function filter(value) {
     const term = value.trim().toLowerCase();
     if (!term) {
-      filtered = invitees.slice(0, 8);
+      filtered = availableInvitees.slice(0, 8);
       close();
       announce(status, '');
       return;
     }
-    filtered = invitees.filter(item => item.name.toLowerCase().includes(term)).slice(0, 8);
+    filtered = availableInvitees.filter(item => item.name.toLowerCase().includes(term)).slice(0, 8);
     activeIndex = -1;
     render();
   }

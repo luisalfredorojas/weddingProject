@@ -96,3 +96,33 @@ export function getRSVPStats(rsvps) {
     notAttending
   };
 }
+
+/**
+ * Fetch confirmed invitee names (public read)
+ * Uses anon key to get only the names of people who already confirmed
+ * This is used to filter them out from the RSVP form autocomplete
+ * @returns {Promise<Array<string>>} Array of confirmed names
+ */
+export async function getConfirmedNames() {
+  const { supabaseUrl, supabaseAnonKey } = await getConfig();
+  
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Supabase configuration missing');
+  }
+  
+  const response = await fetch(`${supabaseUrl}/rest/v1/rsvps?select=name`, {
+    headers: {
+      'apikey': supabaseAnonKey,
+      'Authorization': `Bearer ${supabaseAnonKey}`,
+      'Content-Type': 'application/json'
+    }
+  });
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch confirmed names');
+  }
+  
+  const rsvps = await response.json();
+  // Return unique names only
+  return [...new Set(rsvps.map(r => r.name))];
+}
