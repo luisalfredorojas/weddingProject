@@ -437,6 +437,97 @@ body:not(.is-ready) .panel:first-child {
   gap: 1rem;
 }
 
+/* Desktop: Use contain for sections with important text/logos to prevent cropping */
+@media (min-width: 1025px) {
+  .panel--section3,
+  .panel--section4,
+  .panel--section5,
+  .panel--section7 {
+    background-size: contain;
+  }
+  
+  /* Add background colors to sections with contain to hide gaps */
+  .panel--section3 {
+    background-color: #8FA9EB; /* Light blue */
+  }
+  
+  .panel--section4 {
+    background-color: #F5DB8B; /* Golden yellow */
+  }
+  
+  .panel--section5 {
+    background-color: #8FA9EB; /* Light blue */
+  }
+  
+  .panel--section7 {
+    background-color: #8FA9EB; /* Light blue */
+  }
+  
+  /* Sections 1, 2, 6 keep the default cover behavior */
+  
+  /* Section 1: Use contain for visual layer images to prevent edge cropping */
+  .panel--section1 .visual-layer img {
+    object-fit: contain; /* Use contain instead of cover to show full assets */
+  }
+  
+  /* Section 4: Use contain for visual layer images to prevent edge cropping */
+  .panel--section4 .visual-layer img {
+    object-fit: contain; /* Use contain instead of cover to show full assets */
+  }
+  
+  /* Section 5: Use contain for visual layer images to prevent edge cropping */
+  .panel--section5 .visual-layer img {
+    object-fit: contain; /* Use contain instead of cover to show full assets */
+  }
+  
+  /* Desktop: Faster animations - 25% faster than base speeds */
+  .panel.is-visible .visual-layer {
+    animation-duration: 1350ms; /* 25% faster than 1800ms */
+  }
+  
+  .panel--section3.is-visible .info-overlay {
+    animation-duration: 1350ms; /* 25% faster than 1800ms */
+  }
+  
+  .panel--section3.is-visible .info-overlay:nth-child(2) {
+    animation-delay: 375ms; /* 25% faster than 500ms */
+  }
+  
+  .panel--section3.is-visible .info-overlay:nth-child(3) {
+    animation-delay: 750ms; /* 25% faster than 1000ms */
+  }
+  
+  /* Section 1 - Faster animations */
+  .panel--section1.is-visible .visual-layer {
+    animation-duration: 2625ms; /* 25% faster than 3500ms */
+  }
+  .panel--section1.is-visible .visual-layer:nth-child(2) { animation-delay: 563ms; } /* 25% faster than 750ms */
+  .panel--section1.is-visible .visual-layer:nth-child(3) { animation-delay: 1125ms; } /* 25% faster than 1500ms */
+  .panel--section1.is-visible .visual-layer:nth-child(4) { animation-delay: 1688ms; } /* 25% faster than 2250ms */
+  
+  /* Section 4 - Faster animations */
+  .panel--section4.is-visible .visual-layer {
+    animation-duration: 2625ms; /* 25% faster than 3500ms */
+  }
+  .panel--section4.is-visible .visual-layer:nth-child(2) { animation-delay: 750ms; } /* 25% faster than 1000ms */
+  .panel--section4.is-visible .visual-layer:nth-child(3) { animation-delay: 1500ms; } /* 25% faster than 2000ms */
+  .panel--section4.is-visible .visual-layer:nth-child(4) { animation-delay: 2250ms; } /* 25% faster than 3000ms */
+  
+  /* Sections 5 & 6 - Faster animations */
+  .panel--section5.is-visible .visual-layer,
+  .panel--section6.is-visible .visual-layer {
+    animation-duration: 2625ms; /* 25% faster than 3500ms */
+  }
+  
+  /* Desktop: Better styling for section 3 instruction text */
+  .section3-instruction {
+    font-size: 1.5rem; /* Larger text for desktop */
+    margin: 4rem auto 3rem; /* More vertical spacing */
+    max-width: 600px; /* Wider max-width for desktop */
+    letter-spacing: 0.05em; /* More letter spacing */
+  }
+}
+
 @media (max-width: 900px) {
   .panel--section2 .panel-inner {
     justify-items: center;
