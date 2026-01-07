@@ -526,6 +526,44 @@ body:not(.is-ready) .panel:first-child {
     max-width: 600px; /* Wider max-width for desktop */
     letter-spacing: 0.05em; /* More letter spacing */
   }
+  
+  /* Desktop: Section 3 - Fit content to viewport without scroll */
+  .panel--section3 .panel-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-height: 100vh;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  
+  .section3-instruction {
+    margin: 4rem auto 2rem; /* Increased top margin to position text lower */
+    flex-shrink: 0;
+  }
+  
+  .info-overlays {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-height: calc(100vh - 12rem); /* Leave space for instruction text and padding */
+  }
+  
+  .info-overlay {
+    flex: 1;
+    max-width: 350px;
+    height: auto;
+  }
+  
+  .info-overlay img {
+    max-height: calc(100vh - 16rem); /* Constrain image height to fit viewport */
+    width: auto;
+    height: auto;
+  }
 }
 
 @media (max-width: 900px) {
@@ -1228,6 +1266,22 @@ textarea:focus-visible {
   border: none;
   border-radius: 0.75rem;
   aspect-ratio: 16 / 9;
+}
+
+/* Dresscode images styling for modal */
+.dresscode-images {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.dresscode-images img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: block;
 }
 
 

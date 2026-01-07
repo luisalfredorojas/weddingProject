@@ -25,7 +25,7 @@ async function bootstrap() {
   initScrollAnimations();
 
   try {
-    const content = await fetchJSON('data/content.json', { cacheKey: 'content' });
+    const content = await fetchJSON('data/content.json', { cacheKey: 'content-v2' });
     setupModals(content);
   } catch (error) {
     toast('No fue posible cargar el contenido', { type: 'warning' });

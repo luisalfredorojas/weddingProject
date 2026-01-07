@@ -10,7 +10,7 @@
     },
     "dresscode": {
       "title": "Código de vestimenta",
-      "body": "<p>Vestimenta formal de gala en tonos cálidos y neutrales. Sugerimos vestidos largos, trajes oscuros o guayaberas formales.</p><ul><li>Evita el color blanco.</li><li>Trae un abrigo ligero para la noche.</li><li>Zapatos cómodos para césped.</li></ul>"
+      "body": "<div class=\"dresscode-images\"><img src=\"assets/optimized/dresscodehome.webp\" alt=\"Código de vestimenta - Portada\" loading=\"lazy\" /><img src=\"assets/optimized/queNoUsar.webp\" alt=\"Qué no usar\" loading=\"lazy\" /><img src=\"assets/optimized/queUsarMujeres.webp\" alt=\"Qué usar - Mujeres\" loading=\"lazy\" /><img src=\"assets/optimized/queUsarHombres.webp\" alt=\"Qué usar - Hombres\" loading=\"lazy\" /></div>"
     },
     "faq": {
       "title": "Preguntas frecuentes / FAQ",
