@@ -195,6 +195,16 @@ body:not(.is-ready) .panel:first-child {
 
 .panel--section1 {
   background-image: url('assets/optimized/section1.webp');
+  position: relative;
+}
+
+.panel--section1::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* Dark overlay at 40% opacity */
+  z-index: 0;
+  pointer-events: none;
 }
 
 .panel--section2 {
@@ -537,6 +547,7 @@ body:not(.is-ready) .panel:first-child {
     max-height: 100vh;
     padding: 2rem;
     overflow: hidden;
+    width: min(1400px, 95%); /* Increased width from default to make container wider */
   }
   
   .section3-instruction {
@@ -546,16 +557,16 @@ body:not(.is-ready) .panel:first-child {
   
   .info-overlays {
     flex: 1;
-    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem; /* Increased from 2rem to give more separation between images */
     max-height: calc(100vh - 12rem); /* Leave space for instruction text and padding */
+    width: 100%; /* Ensure it takes full width of parent */
   }
   
   .info-overlay {
-    flex: 1;
-    max-width: 350px;
+    flex: 0 1 auto; /* Changed from flex: 1 to allow images to be smaller */
+    max-width: 280px; /* Reduced from 350px to make images smaller */
     height: auto;
   }
   
@@ -659,7 +670,7 @@ body:not(.is-ready) .panel:first-child {
     justify-content: flex-start !important; /* Align to top, close to instruction */
     align-items: flex-start !important;
     gap: 0.5rem !important; /* Minimal gap */
-    padding-top: 2vh; /* Minimal top padding to stay close to instruction */
+    padding-top: 16vh; /* Adjusted top padding for better spacing */
     padding-bottom: 2rem; /* Reduced bottom padding */
     box-sizing: border-box; /* Ensure padding is included in height */
   }

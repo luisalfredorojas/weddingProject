@@ -48,8 +48,7 @@
     "errorNameRequired": "Por favor escribe tu nombre tal como aparece en la invitación.",
     "errorAttendanceRequired": "Selecciona una opción para confirmar.",
     "errorAllergiesLength": "El mensaje no puede superar 200 caracteres.",
-    "calendlyUnavailable": "Calendly no está disponible en este momento.",
-    "section3Instruction": "Haz click en cada opción para más detalles"
+    "calendlyUnavailable": "Calendly no está disponible en este momento."
   },
   "en": {
     "skipToContent": "Skip to content",
@@ -100,7 +99,6 @@
     "errorNameRequired": "Please enter your name as it appears on the invitation.",
     "errorAttendanceRequired": "Choose an option to confirm.",
     "errorAllergiesLength": "The note cannot exceed 200 characters.",
-    "calendlyUnavailable": "Calendly is unavailable right now.",
-    "section3Instruction": "Click on each option for more details"
+    "calendlyUnavailable": "Calendly is unavailable right now."
   }
 }
