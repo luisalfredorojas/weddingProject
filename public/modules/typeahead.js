@@ -147,6 +147,15 @@ export async function initTypeahead(root) {
   return {
     refresh() {
       filter(input.value);
+    },
+    isValid(name) {
+      if (!name) return false;
+      const normalizedInput = name.trim().toLowerCase();
+      // Check if the name exists in the AVAILABLE invitees list (case insensitive)
+      // This ensures they can't submit a name that is already confirmed (since we filter those out of 'filtered' initially, but 'availableInvitees' keeps them all minus confirmed ones)
+      // Actually, 'availableInvitees' are the ones NOT confirmed yet. 
+      // If we want to allow them to "claim" a name that is in the list, we check against availableInvitees.
+      return availableInvitees.some(invitee => invitee.name.toLowerCase() === normalizedInput);
     }
   };
 }

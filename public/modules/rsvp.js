@@ -160,6 +160,9 @@ export async function initRSVP() {
     if (!name) {
       setError('name', t('errorNameRequired'));
       hasError = true;
+    } else if (typeahead && !typeahead.isValid(name)) {
+      setError('name', 'Por favor selecciona un nombre válido de la lista.');
+      hasError = true;
     }
 
     if (!attendance) {
