@@ -1,6 +1,6 @@
 'use strict';
 
-import { fetchRSVPs, getRSVPStats } from './supabase.js';
+import { fetchRSVPs, getRSVPStats, deleteRSVP } from './supabase.js';
 
 // Session storage key for authentication
 const AUTH_KEY = 'admin_authenticated';
@@ -14,11 +14,13 @@ const ADMIN_PASSWORD = 'wedding2026';
 let authScreen, adminScreen, authForm, authError;
 let searchInput, filterAttendance, exportBtn, refreshBtn, logoutBtn;
 let rsvpTbody, emptyState;
-let statTotal, statYes, statNo;
+let statTotal, statYes, statNo, statPending;
+let pendingSearch, pendingList, pendingCount;
 
 // Data
 let allRSVPs = [];
 let filteredRSVPs = [];
+let allInvitees = [];
 let serviceRoleKey = null;
 
 /**
@@ -30,19 +32,33 @@ async function init() {
   adminScreen = document.getElementById('admin-screen');
   authForm = document.getElementById('auth-form');
   authError = document.getElementById('auth-error');
-  
+
   searchInput = document.getElementById('search-input');
   filterAttendance = document.getElementById('filter-attendance');
   exportBtn = document.getElementById('export-csv');
   refreshBtn = document.getElementById('refresh-btn');
   logoutBtn = document.getElementById('logout-btn');
-  
+
   rsvpTbody = document.getElementById('rsvp-tbody');
   emptyState = document.getElementById('empty-state');
-  
+
   statTotal = document.getElementById('stat-total');
   statYes = document.getElementById('stat-yes');
   statNo = document.getElementById('stat-no');
+  statPending = document.getElementById('stat-pending');
+
+  pendingSearch = document.getElementById('pending-search');
+  pendingList = document.getElementById('pending-list');
+  pendingCount = document.getElementById('pending-count');
+
+  // Load invitees master list
+  try {
+    const res = await fetch('data/invitees.json');
+    const data = await res.json();
+    allInvitees = data.invitees.map(i => i.name);
+  } catch (e) {
+    console.error('Could not load invitees.json', e);
+  }
 
   // Check if already authenticated
   if (checkAuth()) {
@@ -64,6 +80,7 @@ function setupEventListeners() {
   filterAttendance.addEventListener('change', applyFilters);
   exportBtn.addEventListener('click', exportToCSV);
   refreshBtn.addEventListener('click', handleRefresh);
+  pendingSearch.addEventListener('input', renderPendingList);
 }
 
 /**
@@ -72,16 +89,12 @@ function setupEventListeners() {
 async function handleLogin(e) {
   e.preventDefault();
   const password = document.getElementById('admin-password').value;
-  
+
   authError.hidden = true;
-  
-  // For now, using simple password check
-  // In production, this should validate against Supabase or a secure backend
+
   if (password === ADMIN_PASSWORD) {
-    // Store authentication
     sessionStorage.setItem(AUTH_KEY, 'true');
-    
-    // Prompt for Supabase Service Role Key
+
     const key = prompt('Ingresa tu Supabase Service Role Key (empieza con eyJ...):\n\n(Esta key se guarda solo en tu sesión)');
     if (key && key.startsWith('eyJ')) {
       sessionStorage.setItem(SERVICE_KEY_STORAGE, key);
@@ -105,12 +118,12 @@ async function handleLogin(e) {
 function checkAuth() {
   const isAuth = sessionStorage.getItem(AUTH_KEY) === 'true';
   const key = sessionStorage.getItem(SERVICE_KEY_STORAGE);
-  
+
   if (isAuth && key) {
     serviceRoleKey = key;
     return true;
   }
-  
+
   return false;
 }
 
@@ -144,6 +157,7 @@ async function loadRSVPs() {
     filteredRSVPs = [...allRSVPs];
     updateStats();
     renderTable();
+    renderPendingList();
   } catch (error) {
     console.error('Error loading RSVPs:', error);
     showError('Error al cargar las confirmaciones. Verifica tu Service Role Key.');
@@ -167,7 +181,7 @@ async function handleRefresh() {
 function showLoading() {
   rsvpTbody.innerHTML = `
     <tr class="loading-row">
-      <td colspan="5">
+      <td colspan="6">
         <div class="loading-spinner"></div>
         <span>Cargando confirmaciones...</span>
       </td>
@@ -182,11 +196,21 @@ function showLoading() {
 function showError(message) {
   rsvpTbody.innerHTML = `
     <tr>
-      <td colspan="5" style="text-align: center; padding: 2rem; color: var(--color-danger);">
+      <td colspan="6" style="text-align: center; padding: 2rem; color: var(--color-danger);">
         ⚠️ ${message}
       </td>
     </tr>
   `;
+}
+
+/**
+ * Compute pending (missing) invitees — those in invitees.json not in any RSVP
+ */
+function getMissingInvitees() {
+  const respondedNames = new Set(
+    allRSVPs.map(r => r.name.trim().toLowerCase())
+  );
+  return allInvitees.filter(name => !respondedNames.has(name.trim().toLowerCase()));
 }
 
 /**
@@ -197,6 +221,50 @@ function updateStats() {
   statTotal.textContent = stats.total;
   statYes.textContent = stats.attending;
   statNo.textContent = stats.notAttending;
+  const missing = getMissingInvitees();
+  statPending.textContent = missing.length;
+}
+
+/**
+ * Render the pending (missing) invitees panel
+ */
+function renderPendingList() {
+  const missing = getMissingInvitees();
+  const term = (pendingSearch.value || '').toLowerCase().trim();
+  const filtered = term
+    ? missing.filter(n => n.toLowerCase().includes(term))
+    : missing;
+
+  pendingCount.textContent = `${filtered.length} de ${missing.length}`;
+
+  if (filtered.length === 0) {
+    pendingList.innerHTML = `
+      <div class="pending-empty">
+        ${term ? '🔍 Sin resultados para esa búsqueda' : '🎉 ¡Todos han respondido!'}
+      </div>
+    `;
+    return;
+  }
+
+  pendingList.innerHTML = filtered
+    .map(name => `<span class="pending-chip">${escapeHtml(name)}</span>`)
+    .join('');
+}
+
+/**
+ * Handle delete RSVP
+ */
+async function handleDelete(id, name) {
+  const confirmed = window.confirm(`¿Eliminar la confirmación de "${name}"?\n\nEsta acción no se puede deshacer.`);
+  if (!confirmed) return;
+
+  try {
+    await deleteRSVP(id, serviceRoleKey);
+    await loadRSVPs();
+  } catch (err) {
+    console.error('Error deleting RSVP:', err);
+    alert('❌ Error al eliminar la confirmación. Intenta de nuevo.');
+  }
 }
 
 /**
@@ -210,7 +278,7 @@ function renderTable() {
   }
 
   emptyState.hidden = true;
-  
+
   rsvpTbody.innerHTML = filteredRSVPs.map(rsvp => {
     const date = new Date(rsvp.created_at);
     const formattedDate = date.toLocaleDateString('es-ES', {
@@ -220,15 +288,18 @@ function renderTable() {
       hour: '2-digit',
       minute: '2-digit'
     });
-    
-    const attendanceBadge = rsvp.attendance === 'yes' 
+
+    const attendanceBadge = rsvp.attendance === 'yes'
       ? '<span class="badge badge-yes">✅ Sí asiste</span>'
       : '<span class="badge badge-no">❌ No asiste</span>';
-    
-    // Only escape HTML when there's actual data, otherwise use styled empty message
-    const allergiesText = rsvp.allergies ? escapeHtml(rsvp.allergies) : '<em style="color: var(--color-text-muted);">Sin alergias</em>';
-    const songsText = rsvp.songs ? escapeHtml(rsvp.songs) : '<em style="color: var(--color-text-muted);">Sin canciones</em>';
-    
+
+    const allergiesText = rsvp.allergies
+      ? escapeHtml(rsvp.allergies)
+      : '<em style="color: var(--color-text-muted);">Sin alergias</em>';
+    const songsText = rsvp.songs
+      ? escapeHtml(rsvp.songs)
+      : '<em style="color: var(--color-text-muted);">Sin canciones</em>';
+
     return `
       <tr>
         <td>${formattedDate}</td>
@@ -236,9 +307,24 @@ function renderTable() {
         <td>${attendanceBadge}</td>
         <td>${allergiesText}</td>
         <td>${songsText}</td>
+        <td class="actions-cell">
+          <button
+            class="btn-delete"
+            title="Eliminar confirmación de ${escapeHtml(rsvp.name)}"
+            data-id="${rsvp.id}"
+            data-name="${escapeHtml(rsvp.name)}"
+          >🗑️</button>
+        </td>
       </tr>
     `;
   }).join('');
+
+  // Attach delete listeners
+  rsvpTbody.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', () => {
+      handleDelete(btn.dataset.id, btn.dataset.name);
+    });
+  });
 }
 
 /**
@@ -247,19 +333,15 @@ function renderTable() {
 function applyFilters() {
   const searchTerm = searchInput.value.toLowerCase().trim();
   const attendanceFilter = filterAttendance.value;
-  
+
   filteredRSVPs = allRSVPs.filter(rsvp => {
-    // Search filter
-    const matchesSearch = !searchTerm || 
+    const matchesSearch = !searchTerm ||
       rsvp.name.toLowerCase().includes(searchTerm);
-    
-    // Attendance filter
-    const matchesAttendance = !attendanceFilter || 
+    const matchesAttendance = !attendanceFilter ||
       rsvp.attendance === attendanceFilter;
-    
     return matchesSearch && matchesAttendance;
   });
-  
+
   updateStats();
   renderTable();
 }
@@ -277,7 +359,7 @@ function exportToCSV() {
   const rows = filteredRSVPs.map(rsvp => {
     const date = new Date(rsvp.created_at).toLocaleString('es-ES');
     const attendance = rsvp.attendance === 'yes' ? 'Sí' : 'No';
-    
+
     return [
       date,
       rsvp.name,
@@ -287,13 +369,11 @@ function exportToCSV() {
     ];
   });
 
-  // Create CSV content
   const csvContent = [
     headers.join(','),
     ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
   ].join('\n');
 
-  // Create download link
   const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');

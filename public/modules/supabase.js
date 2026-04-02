@@ -126,3 +126,33 @@ export async function getConfirmedNames() {
   // Return unique names only
   return [...new Set(rsvps.map(r => r.name))];
 }
+
+/**
+ * Delete an RSVP record by ID (admin only)
+ * @param {string|number} id - The RSVP record ID
+ * @param {string} authToken - Service role key
+ * @returns {Promise<{ok: boolean}>}
+ */
+export async function deleteRSVP(id, authToken) {
+  const { supabaseUrl } = await getConfig();
+
+  if (!supabaseUrl) {
+    throw new Error('Supabase URL missing');
+  }
+
+  const response = await fetch(`${supabaseUrl}/rest/v1/rsvps?id=eq.${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': authToken,
+      'Authorization': `Bearer ${authToken}`,
+      'Prefer': 'return=minimal'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete RSVP');
+  }
+
+  return { ok: true };
+}

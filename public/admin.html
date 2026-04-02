@@ -43,7 +43,7 @@
       <div class="header-content">
         <div class="header-title">
           <h1>📋 Lista de Confirmaciones</h1>
-          <p class="header-subtitle">Luis & Maria Emilia</p>
+          <p class="header-subtitle">Luis &amp; Maria Emilia</p>
         </div>
         <button id="logout-btn" class="btn-logout" title="Cerrar sesión">
           <span>Salir</span>
@@ -73,6 +73,13 @@
           <div class="stat-content">
             <span class="stat-number" id="stat-no">0</span>
             <span class="stat-label">No asisten</span>
+          </div>
+        </div>
+        <div class="stat-card stat-pending">
+          <div class="stat-icon">⏳</div>
+          <div class="stat-content">
+            <span class="stat-number" id="stat-pending">0</span>
+            <span class="stat-label">Pendientes</span>
           </div>
         </div>
       </div>
@@ -115,11 +122,12 @@
               <th>Asistencia</th>
               <th>Alergias</th>
               <th>Canciones</th>
+              <th class="th-actions">Acciones</th>
             </tr>
           </thead>
           <tbody id="rsvp-tbody">
             <tr class="loading-row">
-              <td colspan="5">
+              <td colspan="6">
                 <div class="loading-spinner"></div>
                 <span>Cargando confirmaciones...</span>
               </td>
@@ -131,6 +139,28 @@
         <div class="empty-icon">📭</div>
         <h3>No hay confirmaciones aún</h3>
         <p>Las confirmaciones aparecerán aquí cuando los invitados envíen el formulario</p>
+      </div>
+    </section>
+
+    <!-- Pending Invitees Section -->
+    <section class="pending-section">
+      <div class="pending-header">
+        <div class="pending-title">
+          <h2>⏳ Invitados Pendientes</h2>
+          <span class="pending-badge" id="pending-count">0 de 0</span>
+        </div>
+        <div class="pending-search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="search"
+            id="pending-search"
+            placeholder="Buscar invitado..."
+            autocomplete="off"
+          />
+        </div>
+      </div>
+      <div id="pending-list" class="pending-list">
+        <div class="pending-empty">Cargando...</div>
       </div>
     </section>
   </div>

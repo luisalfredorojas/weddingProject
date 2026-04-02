@@ -202,6 +202,7 @@ body {
 .stat-total .stat-number { color: var(--color-primary); }
 .stat-yes .stat-number { color: var(--color-success); }
 .stat-no .stat-number { color: var(--color-danger); }
+.stat-pending .stat-number { color: var(--color-warning); }
 
 /* Controls Section */
 .controls-section {
@@ -474,6 +475,153 @@ body {
 
   .auth-card {
     padding: 2rem 1.5rem;
+  }
+}
+
+/* Actions column */
+.th-actions {
+  text-align: center;
+  width: 80px;
+}
+
+.actions-cell {
+  text-align: center;
+}
+
+.btn-delete {
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: var(--color-danger);
+  font-size: 1.1rem;
+  padding: 0.3rem 0.55rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.btn-delete:hover {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: var(--color-danger);
+  transform: scale(1.1);
+}
+
+.btn-delete:active {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   Pending Invitees Section
+   ============================================ */
+
+.pending-section {
+  margin-top: 2rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.pending-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.pending-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pending-title h2 {
+  font-size: 1.25rem;
+  color: var(--color-text);
+}
+
+.pending-badge {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--color-warning);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.pending-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pending-search-box .search-icon {
+  position: absolute;
+  left: 0.85rem;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.pending-search-box input {
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: all 0.2s;
+  width: 220px;
+}
+
+.pending-search-box input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(64, 105, 119, 0.1);
+}
+
+.pending-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-height: 48px;
+}
+
+.pending-chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(245, 158, 11, 0.07);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  color: var(--color-text);
+  border-radius: 9999px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.85rem;
+  transition: background 0.15s;
+}
+
+.pending-chip:hover {
+  background: rgba(245, 158, 11, 0.15);
+}
+
+.pending-empty {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .pending-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pending-search-box input {
+    width: 100%;
   }
 }
 
